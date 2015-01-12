@@ -1,4 +1,4 @@
-package qns;
+package accepted;
 
 import static org.junit.Assert.*;
 
