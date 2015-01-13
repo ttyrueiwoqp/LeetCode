@@ -1,4 +1,4 @@
-package accepted;
+package accepted.Q001_Q020;
 
 import static org.junit.Assert.assertEquals;
 
