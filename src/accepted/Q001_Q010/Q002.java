@@ -1,4 +1,4 @@
-package accepted.Q001_Q020;
+package accepted.Q001_Q010;
 
 import util.ListNode;
 
