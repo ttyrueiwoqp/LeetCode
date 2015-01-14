@@ -1,4 +1,4 @@
-package accepted;
+package accepted.Q061_Q070;
 
 public class Q064 {
 

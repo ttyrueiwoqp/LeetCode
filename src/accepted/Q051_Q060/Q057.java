@@ -1,4 +1,4 @@
-package accepted;
+package accepted.Q051_Q060;
 
 import java.util.ArrayList;
 
