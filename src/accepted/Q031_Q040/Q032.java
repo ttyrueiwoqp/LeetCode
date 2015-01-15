@@ -1,11 +1,9 @@
 package accepted.Q031_Q040;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Deque;
-import java.util.List;
 
 import org.junit.Test;
 
