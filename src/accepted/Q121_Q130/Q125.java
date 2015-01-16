@@ -1,4 +1,4 @@
-package accepted;
+package accepted.Q121_Q130;
 
 public class Q125 {
 
