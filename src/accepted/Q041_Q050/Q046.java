@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q041_Q050;
 
 import java.util.ArrayList;
 import java.util.List;
