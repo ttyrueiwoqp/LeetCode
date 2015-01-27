@@ -1,7 +1,5 @@
 package accepted.Q101_Q110;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import util.TreeNode;
