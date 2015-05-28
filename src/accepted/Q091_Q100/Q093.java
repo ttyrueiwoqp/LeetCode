@@ -35,7 +35,7 @@ public class Q093 {
 			return res;
 		}
 
-		int partLength = Math.min(3, s.length());
+		int partLength = Math.min(3, s.length() - 1);
 		for (int i = 1; i <= partLength; i++) {
 
 			String subStr1 = s.substring(0, i);
