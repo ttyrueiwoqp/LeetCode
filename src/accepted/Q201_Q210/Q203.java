@@ -13,10 +13,6 @@ import util.ListNode;
  */
 public class Q203 {
 	public ListNode removeElements(ListNode head, int val) {
-		if (head == null) {
-			return null;
-		}
-
 		ListNode res = new ListNode(0);
 		ListNode prev = res;
 		prev.next = head;
