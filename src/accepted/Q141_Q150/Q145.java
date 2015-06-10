@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q141_Q150;
 
 import org.junit.Test;
 import util.TreeNode;
