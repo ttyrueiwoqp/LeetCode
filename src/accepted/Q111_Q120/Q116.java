@@ -1,7 +1,10 @@
-package qns;
+package accepted.Q111_Q120;
 
 import org.junit.Test;
 import util.TreeLinkNode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by LU-PC on 6/12/2015.
@@ -37,13 +40,44 @@ import util.TreeLinkNode;
  */
 public class Q116 {
 	public void connect(TreeLinkNode root) {
+		List<TreeLinkNode> nodeList = new ArrayList<>();
+		traverse(root, nodeList, 0);
+	}
 
+	public void traverse(TreeLinkNode node, List<TreeLinkNode> nodeList, int level) {
+		if (node == null) {
+			return;
+		}
 
+		if (nodeList.size() <= level) {
+			nodeList.add(node);
+		} else {
+			nodeList.get(level).next = node;
+			nodeList.set(level, node);
+		}
 
+		traverse(node.left, nodeList, level + 1);
+		traverse(node.right, nodeList, level + 1);
 	}
 
 	@Test
 	public void test() {
+		TreeLinkNode[] nodes = new TreeLinkNode[8];
 
+		for (int i = 1; i <= 7; i++) {
+			nodes[i] = new TreeLinkNode(i);
+		}
+
+		nodes[1].left = nodes[2];
+		nodes[2].left = nodes[4];
+		nodes[3].left = nodes[6];
+		nodes[1].right = nodes[3];
+		nodes[2].right = nodes[5];
+		nodes[3].right = nodes[7];
+
+		connect(nodes[1]);
+		for (int i = 1; i <= 7; i++) {
+			System.out.println(nodes[i].next);
+		}
 	}
 }
