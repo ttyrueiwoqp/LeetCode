@@ -1,7 +1,5 @@
 package qns;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 /**
@@ -23,7 +21,6 @@ public class Q072 {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
 	}
 
 }
