@@ -8,6 +8,11 @@ import java.util.List;
 
 import org.junit.Test;
 
+/**
+ * Given a string S, find the longest palindromic substring in S.
+ * You may assume that the maximum length of S is 1000,
+ * and there exists one unique longest palindromic substring.
+ */
 public class Q005 {
 
 	public String longestPalindrome(String s) {
@@ -83,7 +88,7 @@ public class Q005 {
 		int[] p = new int[s2.length];
 		int c = 0, r = 0; // Here the first element in s2 has been processed.
 		int m = 0, n = 0; // The walking indices to compare if two elements are
-							// the same
+		// the same
 		for (int i = 1; i < s2.length; i++) {
 			if (i > r) {
 				p[i] = 0;
@@ -157,9 +162,9 @@ public class Q005 {
 		}
 		final int helperLength = 2 * strlen - 1;
 		final int[] helper = new int[helperLength];
-		
+
 		helper[0] = 1;
-		
+
 		int lastIndex = 0;
 		int lastMax = 0;
 		List<Integer> cnt = new ArrayList<Integer>();
@@ -177,7 +182,7 @@ public class Q005 {
 			final int offsetLimit = Math.min(base + 1, strlen - base - mod);
 			while (offset < offsetLimit
 					&& string.charAt(base - offset) == string.charAt(base
-							+ offset + mod)) {
+					+ offset + mod)) {
 				radius += 2;
 				offset++;
 				cnt.add(1);
@@ -195,51 +200,51 @@ public class Q005 {
 		System.out.println(cnt);
 		return string.substring(pSt, pSt + pLen);
 	}
-	
-	
+
+
 	public String findLongestPalindrome3(String s) {
 		String t = preProcess(s);
 		int length = t.length();
 		int[] p = new int[length];
 		int c = 0, r = 0;
-		
-		for (int i = 1; i < length-1; i++) {
+
+		for (int i = 1; i < length - 1; i++) {
 			int j = 2 * c - i;
-			
+
 			if (r > i) {
 				if (r - i > p[j]) {
-					p[i] = p[j];	
+					p[i] = p[j];
 				} else {
 					p[i] = r - i;
 				}
 			} else {
 				p[i] = 0;
 			}
-			
+
 			while (t.charAt(i + 1 + p[i]) == t.charAt(i - 1 - p[i])) {
 				p[i]++;
 			}
-			
+
 			if (i + p[i] > r) {
 				c = i;
 				r = i + p[i];
 			}
 		}
-		
+
 		int maxLen = 0;
 		int cIdx = 0;
-		
-		for (int i = 1; i < length-1; i++) {
+
+		for (int i = 1; i < length - 1; i++) {
 			if (p[i] > maxLen) {
 				maxLen = p[i];
 				cIdx = i;
 			}
 		}
-		
+
 		return s.substring((cIdx - 1 - maxLen) / 2, (cIdx - 1 + maxLen) / 2);
-		
+
 	}
-	
+
 	public String preProcess(String s) {
 		int length = s.length();
 		if (length == 0) {
@@ -252,11 +257,11 @@ public class Q005 {
 		ret += "#$";
 		return ret;
 	}
-	
+
 
 	@Test
 	public void test() {
-		
+
 		assertEquals("bcdcbadabcdcb", findLongestPalindrome3("abcdcbadabcdcb"));
 		assertEquals("bacab", findLongestPalindrome3("abacabdd"));
 		assertEquals("ccc", findLongestPalindrome3("ccc"));
@@ -264,6 +269,6 @@ public class Q005 {
 		assertEquals(
 				"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
 				findLongestPalindrome3("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
-		
+
 	}
 }

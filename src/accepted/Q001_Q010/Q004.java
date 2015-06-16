@@ -2,6 +2,11 @@ package accepted.Q001_Q010;
 
 import org.junit.Test;
 
+/**
+ * There are two sorted arrays nums1 and nums2 of size m and n respectively.
+ * Find the median of the two sorted arrays.
+ * The overall run time complexity should be O(log (m+n)).
+ */
 public class Q004 {
 
 	public double findMedianSortedArrays1(int A[], int B[]) {
@@ -79,7 +84,7 @@ public class Q004 {
 	public void test() {
 		int[] a = {10, 11, 12, 13, 14, 15};
 		int[] b = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-		
+
 		System.out.println(findMedianSortedArrays(a, b));
 	}
 
