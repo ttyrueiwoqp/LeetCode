@@ -40,19 +40,4 @@ public class Q198 {
 		return max;
 	}
 
-	@Test
-	public void test() {
-		int[] a = {1, 3, 6, 7, 10, 7, 1, 8, 5, 9, 1, 4, 4, 3};
-		System.out.println(rob(a));
-		int[] b = {1};
-		System.out.println(rob(b));
-		int[] c = {1, 1};
-		System.out.println(rob(c));
-		int[] d = {1, 1, 2};
-		System.out.println(rob(d));
-		int[] e = {2, 4, 3, 2, 5};
-		System.out.println(rob(e));
-		int[] f = {2, 1, 2, 6, 1, 8, 10, 10};
-		System.out.println(rob(f));
-	}
 }
