@@ -1,5 +1,7 @@
 package accepted.Q191_Q200;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,26 +17,42 @@ import java.util.List;
  * determine the maximum amount of money you can rob tonight without alerting the police.
  */
 public class Q198 {
-    public int rob(int[] nums) {
+	public int rob(int[] nums) {
 
-        int max = 0;
-        int[] maxs = new int[nums.length];
+		int max = 0;
+		int[] maxs = new int[nums.length];
 
-        for (int i = 0; i < nums.length; i++) {
+		for (int i = 0; i < nums.length; i++) {
 
-            if (i < 2) {
-                maxs[i] = nums[i];
-            } else if (i == 2) {
-                maxs[i] = nums[i] + nums[i-2];
-            } else if (i > 2){
-                maxs[i] = nums[i] + Math.max(maxs[i - 2], maxs[i - 3]);
-            }
+			if (i < 2) {
+				maxs[i] = nums[i];
+			} else if (i == 2) {
+				maxs[i] = nums[i] + nums[i - 2];
+			} else if (i > 2) {
+				maxs[i] = nums[i] + Math.max(maxs[i - 2], maxs[i - 3]);
+			}
 
-            if (maxs[i] > max) {
-                max = maxs[i];
-            }
-        }
+			if (maxs[i] > max) {
+				max = maxs[i];
+			}
+		}
 
-        return max;
-    }
+		return max;
+	}
+
+	@Test
+	public void test() {
+		int[] a = {1, 3, 6, 7, 10, 7, 1, 8, 5, 9, 1, 4, 4, 3};
+		System.out.println(rob(a));
+		int[] b = {1};
+		System.out.println(rob(b));
+		int[] c = {1, 1};
+		System.out.println(rob(c));
+		int[] d = {1, 1, 2};
+		System.out.println(rob(d));
+		int[] e = {2, 4, 3, 2, 5};
+		System.out.println(rob(e));
+		int[] f = {2, 1, 2, 6, 1, 8, 10, 10};
+		System.out.println(rob(f));
+	}
 }

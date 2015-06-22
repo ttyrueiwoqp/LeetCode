@@ -17,7 +17,7 @@ import org.junit.Test;
  * determine the maximum amount of money you can rob tonight without alerting the police.
  */
 public class Q213 {
-	public int rob(int[] nums) {
+	public int robs(int[] nums) {
 		int max = 0;
 		int[] maxs = new int[nums.length];
 		int[] stIdxs = new int[nums.length];
@@ -68,6 +68,52 @@ public class Q213 {
 		return max;
 	}
 
+	public int rob(int[] nums) {
+
+		int max = 0;
+		int[] maxs = new int[nums.length];
+
+		for (int i = 0; i < nums.length; i++) {
+
+			if (i < 2) {
+				maxs[i] = nums[i];
+			} else if (i == 2) {
+				maxs[i] = nums[i] + nums[i - 2];
+			} else if (i > 2) {
+				maxs[i] = nums[i] + Math.max(maxs[i - 2], maxs[i - 3]);
+			}
+
+			if (maxs[i] > max) {
+				max = maxs[i];
+			}
+		}
+
+		return max;
+	}
+
+	public int rob1(int[] nums) {
+
+		int max = 0;
+		int[] maxs = new int[nums.length];
+
+		for (int i = 0; i < nums.length; i++) {
+
+			if (i < 2) {
+				maxs[i] = nums[i];
+			} else if (i == 2) {
+				maxs[i] = nums[i] + nums[i - 2];
+			} else if (i > 2) {
+				maxs[i] = nums[i] + Math.max(maxs[i - 2], maxs[i - 3]);
+			}
+
+			if (maxs[i] > max) {
+				max = maxs[i];
+			}
+		}
+
+		return max;
+	}
+
 	/**
 	 * 41
 	 * 1
@@ -88,7 +134,7 @@ public class Q213 {
 		System.out.println(rob(d));
 		int[] e = {2, 2, 4, 3, 2, 5};
 		System.out.println(rob(e));
-		int[] f = {2, 1, 2, 6, 1, 8, 10, 10};
+		int[] f = {20, 1, 2, 6, 1, 8, 10, 10};
 		System.out.println(rob(f));
 
 
