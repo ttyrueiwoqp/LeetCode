@@ -1,5 +1,6 @@
 package qns;
 
+import org.junit.Test;
 import util.TreeNode;
 
 /**
@@ -13,5 +14,9 @@ import util.TreeNode;
 public class Q105 {
 	public TreeNode buildTree(int[] preorder, int[] inorder) {
 		return null;
+	}
+
+	@Test
+	public void test() {
 	}
 }
