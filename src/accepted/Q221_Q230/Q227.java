@@ -5,21 +5,21 @@ import org.junit.Test;
 import java.util.*;
 
 /**
- * Created by FJ on 6/23/2015.
+ * Created by LU-PC on 7/2/2015.
  * <p>
  * Implement a basic calculator to evaluate a simple expression string.
  * <p>
- * The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negative integers and empty spaces .
+ * The expression string contains only non-negative integers, +, -, *, / operators and empty spaces . The integer division should truncate toward zero.
  * <p>
  * You may assume that the given expression is always valid.
  * <p>
  * Some examples:
- * "1 + 1" = 2
- * " 2-1 + 2 " = 3
- * "(1+(4+5+2)-3)+(6+8)" = 23
+ * "3+2*2" = 7
+ * " 3/2 " = 1
+ * " 3+5 / 2 " = 5
  * Note: Do not use the eval built-in library function.
  */
-public class Q224 {
+public class Q227 {
 	public int calculate(String s) {
 		Map<String, Integer> opsMap = createOpsMap();
 		String postfix = getPostfixFromInfix(s, opsMap);
@@ -55,13 +55,22 @@ public class Q224 {
 				}
 				stack.pop();
 
-			} else if (c == '+' || c == '-' || c == '*' || c == '/') {
+			} else if (c == '+' || c == '*' || c == '/') {
 				// operator
 				while (!stack.isEmpty()
 						&& opsMap.get(String.valueOf(c)) >= opsMap.get(String.valueOf(stack.peek()))) {
 					sb.append(stack.pop()).append(" ");
 				}
 				stack.push(c);
+
+
+			} else if (c == '-') {
+				while (!stack.isEmpty()
+						&& opsMap.get(String.valueOf(c)) >= opsMap.get(String.valueOf(stack.peek()))) {
+					sb.append(stack.pop()).append(" ");
+				}
+				sb.append('-');
+				stack.push('+');
 
 			} else if (Character.isDigit(c)) {
 				// number
@@ -129,5 +138,9 @@ public class Q224 {
 		System.out.println(calculate("1 + 1"));
 		System.out.println(calculate(" 23-1 + 2 "));
 		System.out.println(calculate("(1+(4+5+2)-3)+(6+8)"));
+		System.out.println(calculate("0-2147483648"));
+		System.out.println(calculate("3+2*2"));
+		System.out.println(calculate(" 3/2 "));
+		System.out.println(calculate(" 3+5 / 2 "));
 	}
 }
