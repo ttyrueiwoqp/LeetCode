@@ -4,15 +4,20 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * Given an integer, convert it to a roman numeral.
+ * <p>
+ * Input is guaranteed to be within the range from 1 to 3999.
+ */
 public class Q012 {
 
 	/**
 	 * I - 1 V - 5
-	 * 
+	 * <p>
 	 * X - 10 L - 50
-	 * 
+	 * <p>
 	 * C - 100 D - 500
-	 * 
+	 * <p>
 	 * M - 1000
 	 */
 	public String intToRoman(int num) {
@@ -41,33 +46,33 @@ public class Q012 {
 		String res = new String();
 
 		switch (digit) {
-		case 0:
-		case 1:
-		case 2:
-		case 3:
-			for (int i = 0; i < digit; i++) {
-				res += one;
-			}
-			break;
-		case 4:
-			res += one + five;
-			break;
-		case 5:
-			res += five;
-			break;
-		case 6:
-		case 7:
-		case 8:
-			res += five;
-			for (int i = 0; i < digit - 5; i++) {
-				res += one;
-			}
-			break;
-		case 9:
-			res += one + ten;
-			break;
-		default:
-			break;
+			case 0:
+			case 1:
+			case 2:
+			case 3:
+				for (int i = 0; i < digit; i++) {
+					res += one;
+				}
+				break;
+			case 4:
+				res += one + five;
+				break;
+			case 5:
+				res += five;
+				break;
+			case 6:
+			case 7:
+			case 8:
+				res += five;
+				for (int i = 0; i < digit - 5; i++) {
+					res += one;
+				}
+				break;
+			case 9:
+				res += one + ten;
+				break;
+			default:
+				break;
 		}
 
 		return res;

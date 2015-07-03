@@ -12,6 +12,18 @@ import java.util.Set;
 
 import org.junit.Test;
 
+/**
+ * Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
+ * <p>
+ * Note:
+ * Elements in a triplet (a,b,c) must be in non-descending order. (ie, a ? b ? c)
+ * The solution set must not contain duplicate triplets.
+ * For example, given array S = {-1 0 1 2 -1 -4},
+ * <p>
+ * A solution set is:
+ * (-1, 0, 1)
+ * (-1, -1, 2)
+ */
 public class Q015 {
 
 	public List<List<Integer>> threeSum1(int[] num) {
@@ -94,7 +106,7 @@ public class Q015 {
 
 		return res;
 	}
-	
+
 	public List<List<Integer>> threeSum2(int[] num) {
 
 		List<List<Integer>> res = new ArrayList<List<Integer>>();
@@ -153,7 +165,7 @@ public class Q015 {
 				}
 			}
 		}
-		
+
 		for (Triple triple : resSet) {
 			List<Integer> item = new ArrayList<Integer>();
 			item.add(triple.x);
@@ -212,7 +224,7 @@ public class Q015 {
 			return res;
 		}
 		Arrays.sort(num);
-		
+
 		for (int i = 0; i < num.length; i++) {
 			if (i > 0 && num[i] == num[i - 1]) {
 				continue;
@@ -220,7 +232,7 @@ public class Q015 {
 			for (int j = i + 1; j < num.length; j++) {
 				if (j > i + 1 && num[j] == num[j - 1]) {
 					continue;
-				}	
+				}
 				for (int k = num.length - 1; k > j; k--) {
 					if (k < num.length - 1 && num[k] == num[k + 1]) {
 						continue;
@@ -235,10 +247,10 @@ public class Q015 {
 				}
 			}
 		}
-		
+
 		return res;
 	}
-	
+
 	@Test
 	public void test() {
 
@@ -249,11 +261,11 @@ public class Q015 {
 		a.add(m);
 		a.add(n);
 
-		int[] s = { 0,7,-4,-7,0,14,-6,-4,-12,11,4,9,7,4,-10,8,10,5,4,14,6,0,-9,5,6,6,-11,1,-8,-1,2,-1,13,5,-1,-2,4,9,9,-1,-3,-1,-7,11,10,-2,-4,5,10,-15,-4,-6,-8,2,14,13,-7,11,-9,-8,-13,0,-1,-15,-10,13,-2,1,-1,-15,7,3,-9,7,-1,-14,-10,2,6,8,-6,-12,-13,1,-3,8,-9,-2,4,-2,-3,6,5,11,6,11,10,12,-11,-14 };
+		int[] s = {0, 7, -4, -7, 0, 14, -6, -4, -12, 11, 4, 9, 7, 4, -10, 8, 10, 5, 4, 14, 6, 0, -9, 5, 6, 6, -11, 1, -8, -1, 2, -1, 13, 5, -1, -2, 4, 9, 9, -1, -3, -1, -7, 11, 10, -2, -4, 5, 10, -15, -4, -6, -8, 2, 14, 13, -7, 11, -9, -8, -13, 0, -1, -15, -10, 13, -2, 1, -1, -15, 7, 3, -9, 7, -1, -14, -10, 2, 6, 8, -6, -12, -13, 1, -3, 8, -9, -2, 4, -2, -3, 6, 5, 11, 6, 11, 10, 12, -11, -14};
 		Arrays.sort(s);
 		System.out.println(s);
 
-		int[] t = { -2, 0, 1, 1, 2 };
+		int[] t = {-2, 0, 1, 1, 2};
 		assertEquals(a, threeSum(t));
 
 	}
