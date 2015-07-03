@@ -44,13 +44,11 @@ public class Q222 {
 		}
 
 		int currH = 1;
-		int currCnt = cnt * 2;
 		TreeNode curr = node.left;
 
 		while (curr != null) {
 			curr = curr.right;
 			currH++;
-			currCnt = currCnt * 2 + 1;
 		}
 
 		if (currH < h) {
