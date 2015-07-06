@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q121_Q130;
 
 import org.junit.Test;
 import util.TreeNode;
@@ -21,26 +21,28 @@ import util.TreeNode;
 public class Q124 {
 
 	public int maxPathSum(TreeNode root) {
-		TreeNode max = new TreeNode(0);
-		return nodeMax(root, max);
+		TreeNode max = new TreeNode(Integer.MIN_VALUE);
+		nodeMax(root, max);
+		return max.val;
 	}
 
 	private int nodeMax(TreeNode node, TreeNode max) {
 		if (node == null) {
 			return 0;
 		}
-		int left = nodeMax(node.left, max);
-		int right = nodeMax(node.right, max);
+		int left = Math.max(nodeMax(node.left, max), 0);
+		int right = Math.max(nodeMax(node.right, max), 0);
 		max.val = Math.max(max.val, node.val + left + right);
 		return node.val + Math.max(left, right);
-
 	}
 
 	@Test
 	public void test() {
-		TreeNode a = new TreeNode(1);
-//		TreeNode b = new TreeNode(0);
-//		a.left = b;
+		TreeNode a = new TreeNode(2);
+		TreeNode b = new TreeNode(-1);
+		TreeNode c = new TreeNode(3);
+		a.left = b;
+		a.right = c;
 		System.out.println(maxPathSum(a));
 	}
 
