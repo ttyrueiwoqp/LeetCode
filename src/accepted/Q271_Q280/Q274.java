@@ -27,12 +27,8 @@ public class Q274 {
 		int result = 0;
 		Arrays.sort(citations);
 		for (int i = citations.length - 1;  i >= 0; i--) {
-			int h = citations.length - i;
-			if (citations[i] >= h) {
-				if (i == 0) {
-					return h;
-				}
-				result = h;
+			if (citations[i] > result) {
+				result++;
 			} else {
 				break;
 			}

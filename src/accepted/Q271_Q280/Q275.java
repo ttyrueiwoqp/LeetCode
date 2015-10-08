@@ -1,5 +1,7 @@
 package accepted.Q271_Q280;
 
+import org.junit.Test;
+
 import java.util.Arrays;
 
 /**
@@ -11,19 +13,32 @@ import java.util.Arrays;
 public class Q275 {
 
 	public int hIndex(int[] citations) {
-
-		int result = 0;
-		for (int i = citations.length - 1;  i >= 0; i--) {
-			int h = citations.length - i;
-			if (citations[i] >= h) {
-				if (i == 0) {
-					return h;
-				}
-				result = h;
-			} else {
-				break;
-			}
+		if (citations.length == 0) {
+			return 0;
 		}
-		return result;
+		return citations.length - binarySearch(citations, 0, citations.length - 1);
+	}
+
+	private int binarySearch(int[] citations, int st, int end) {
+		if (st == end) {
+			return isH(citations, st) ? st : citations.length;
+		}
+		int mid = st + (end - st) / 2;
+
+		if (isH(citations, mid)) {
+			return binarySearch(citations, st, mid);
+		} else {
+			return binarySearch(citations, mid + 1, end);
+		}
+	}
+
+	private boolean isH(int[] citations, int i) {
+		return citations[i] >= citations.length - i;
+	}
+
+	@Test
+	public void test() {
+		int[] citations = {0, 1, 3, 5, 6};
+		System.out.println(hIndex(citations));
 	}
 }
