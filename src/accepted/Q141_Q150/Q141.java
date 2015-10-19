@@ -1,5 +1,6 @@
 package accepted.Q141_Q150;
 
+import org.junit.Test;
 import util.ListNode;
 
 /**
@@ -28,5 +29,13 @@ public class Q141 {
 		}
 
 		return false;
+	}
+
+	@Test
+	public void test() {
+		ListNode n1 = new ListNode(1);
+		n1.next = n1;
+
+		System.out.println(hasCycle(n1));
 	}
 }
