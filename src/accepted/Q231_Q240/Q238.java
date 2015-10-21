@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q231_Q240;
 
 /**
  * Created by LU-PC on 10/20/2015.
@@ -17,6 +17,21 @@ package qns;
 public class Q238 {
 	public int[] productExceptSelf(int[] nums) {
 
-		return null;
+		int[] a = new int[nums.length];
+		int[] b = new int[nums.length];
+		a[0] = 1;
+		b[nums.length - 1] = 1;
+
+		for (int i = 1; i < nums.length; i++) {
+			a[i] = a[i-1] * nums[i-1];
+		}
+		for (int i = nums.length - 2; i >= 0; i--) {
+			b[i] = b[i+1] * nums[i+1];
+		}
+
+		for (int i = 0; i < nums.length; i++) {
+			a[i] = a[i] * b[i];
+		}
+		return a;
 	}
 }
