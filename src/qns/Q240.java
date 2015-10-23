@@ -2,6 +2,9 @@ package qns;
 
 import org.junit.Test;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by LU-PC on 10/21/2015.
  * <p>
@@ -31,18 +34,19 @@ public class Q240 {
 
 		while (!(iSt == iEnd && jSt == jEnd)) {
 			int iMid = (iSt + iEnd) / 2, jMid = (jSt + jEnd) / 2;
+			int curr = get(matrix, iMid, jMid);
 
-			if (matrix[iMid][jMid] == target) {
+			if (curr == target) {
 				return true;
 			}
 
-			if (matrix[iMid][jMid] < target) {
+			if (curr < target) {
 				iSt = (iMid + 1 < matrix.length) ? iMid + 1 : iMid;
 				jSt = (jMid + 1 < matrix[0].length) ? jMid + 1 : jMid;
 
 			} else {
-				iEnd = (iMid - 1 >= 0) ? iMid - 1 : iMid;
-				jEnd = (jMid - 1 >= 0) ? jMid - 1 : jMid;
+				iEnd =  iMid;
+				jEnd =  jMid;
 			}
 
 		}
@@ -54,46 +58,46 @@ public class Q240 {
 		return false;
 	}
 
-	private boolean search(int[][] matrix, int prevIMid, int prevJMid, int target) {
-
-//		System.out.println(prevIMid + " " + prevJMid);
-		for (int i = 0; i < prevJMid; i++) {
-			if (matrix[i][prevJMid] == target) {
-				return true;
-			}
-		}
-		for (int j = 0; j < prevIMid; j++) {
-			if (matrix[prevIMid][j] == target) {
-				return true;
-			}
+	private int get(int[][] matrix, int i, int j) {
+		if (i < 0) {
+			i = 0;
+		} else if (i > matrix.length - 1) {
+			i = matrix.length - 1;
 		}
 
-		return false;
+		if (j < 0) {
+			j = 0;
+		} else if (j > matrix.length - 1) {
+			j = matrix.length - 1;
+		}
+
+		return matrix[i][j];
 	}
 
 
 	@Test
 	public void test() {
-		int[][] a = {
-				{1, 4, 7, 11, 15},
-				{2, 5, 8, 12, 19},
-				{3, 6, 9, 16, 22},
-				{10, 13, 14, 17, 24},
-				{18, 21, 23, 26, 30}
-		};
-		int[][] b = {
-				{1, 4, 7, 11, 15, 18, 20},
-				{2, 5, 8, 12, 19, 23, 26},
-				{3, 6, 9, 16, 22, 25, 28},
-				{10, 13, 14, 17, 24, 30, 32}
-		};
+//		int[][] a = {
+//				{1, 4, 7, 11, 15},
+//				{2, 5, 8, 12, 19},
+//				{3, 6, 9, 16, 22},
+//				{10, 13, 14, 17, 24},
+//				{18, 21, 23, 26, 30}
+//		};
+//		int[][] b = {
+//				{1, 4, 7, 11, 15, 18, 20},
+//				{2, 5, 8, 12, 19, 23, 26},
+//				{3, 6, 9, 16, 22, 25, 28},
+//				{10, 13, 14, 17, 24, 30, 32}
+//		};
 
 //		for (int i = 0; i < 33; i++) {
 //			if (searchMatrix(b, i)) {
 //				System.out.println(i);
 //			}
 //		}
-		searchMatrix(b, 7);
+//		searchMatrix(b, 7);
+
 	}
 
 }
