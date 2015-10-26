@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q231_Q240;
 
 import org.junit.Test;
 
