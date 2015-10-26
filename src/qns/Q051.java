@@ -1,7 +1,13 @@
 package qns;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Pattern;
 
 /**
  * Created by LU-PC on 6/23/2015.
@@ -50,7 +56,13 @@ public class Q051 {
 
 	}
 
+
+
 	private boolean isSafe(int[][] board, int i, int j) {
 		return false;
+	}
+
+	@Test
+	public void test() {
 	}
 }
