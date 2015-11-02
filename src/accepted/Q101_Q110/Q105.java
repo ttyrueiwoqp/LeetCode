@@ -16,10 +16,6 @@ import java.util.*;
 public class Q105 {
 	public TreeNode buildTree(int[] preorder, int[] inorder) {
 
-		if (preorder.length == 0) {
-			return null;
-		}
-
 		Map<Integer, Integer> inMap = new HashMap<>();
 		for (int i = 0; i < preorder.length; i++) {
 			inMap.put(inorder[i], i);
