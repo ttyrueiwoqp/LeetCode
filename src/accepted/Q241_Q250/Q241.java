@@ -53,9 +53,9 @@ public class Q241 {
 		}
 
 		for (int i = st; i < end; i++) {
-			List<Integer> front = compute(nums, st, i, ops);
-			List<Integer> back = compute(nums, i+1, end, ops);
-			calc(res, front, back, ops.get(i));
+			List<Integer> left = compute(nums, st, i, ops);
+			List<Integer> right = compute(nums, i+1, end, ops);
+			calc(res, left, right, ops.get(i));
 		}
 
 		return res;
