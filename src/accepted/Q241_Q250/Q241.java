@@ -52,12 +52,6 @@ public class Q241 {
 			return res;
 		}
 
-		if (st == end - 1) {
-			res.add(calc(nums.get(st), nums.get(end), ops.get(st)));
-			return res;
-		}
-
-
 		for (int i = st; i < end; i++) {
 			List<Integer> front = compute(nums, st, i, ops);
 			List<Integer> back = compute(nums, i+1, end, ops);
@@ -65,7 +59,6 @@ public class Q241 {
 		}
 
 		return res;
-
 	}
 
 	private List<Integer> calc(List<Integer> res, List<Integer> front, List<Integer> back, char op) {
