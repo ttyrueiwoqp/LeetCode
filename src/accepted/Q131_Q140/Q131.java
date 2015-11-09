@@ -26,7 +26,7 @@ public class Q131 {
 			info.add(new ArrayList<>());
 
 			for (int j = i; j < s.length(); j++) {
-				if (isPalindrom(s, i, j)) {
+				if (isPalindrome(s, i, j)) {
 					info.get(i).add(j);
 				}
 			}
@@ -55,7 +55,7 @@ public class Q131 {
 		return res;
 	}
 
-	private boolean isPalindrom(String s, int i, int j) {
+	private boolean isPalindrome(String s, int i, int j) {
 		while (i < j) {
 			if (s.charAt(i) != s.charAt(j)) {
 				return false;
