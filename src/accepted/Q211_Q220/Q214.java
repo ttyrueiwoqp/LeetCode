@@ -22,15 +22,15 @@ public class Q214 {
 			return s;
 		}
 
-		int maxIdx = 0, sLen = s.length();
-		for (int i = sLen - 1; i >= 0; i--) {
+		int maxIdx = 0;
+		for (int i = s.length() - 1; i >= 0; i--) {
 			if (isPalindrome(s, 0, i)) {
 				maxIdx = i;
 				break;
 			}
 		}
 
-		return new StringBuilder(s.substring(maxIdx+1)).reverse().append(s).toString();
+		return new StringBuilder(s.substring(maxIdx + 1)).reverse().append(s).toString();
 	}
 
 	private boolean isPalindrome(String s, int i, int j) {
