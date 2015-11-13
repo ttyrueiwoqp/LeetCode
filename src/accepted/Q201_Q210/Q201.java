@@ -25,11 +25,9 @@ public class Q201 {
 			j >>= 1;
 			k++;
 		}
-
 		if (diff == -1) {
 			return m;
 		}
-
 		diff++;
 		return m >> diff << diff;
 	}
