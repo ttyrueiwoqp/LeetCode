@@ -1,6 +1,7 @@
 package accepted.Q201_Q210;
 
 import org.junit.Test;
+import util.TrieNode;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -22,16 +23,6 @@ import java.util.Set;
 // trie.search("key");
 
 public class Q208 {
-
-	class TrieNode {
-		// Initialize your data structure here.
-		public Map<Character, TrieNode> m;
-		public int val;
-		public TrieNode() {
-			val = 0;
-			m = new HashMap<>();
-		}
-	}
 
 	public class Trie {
 		private TrieNode root;
