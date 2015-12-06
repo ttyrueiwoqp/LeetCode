@@ -38,8 +38,9 @@ public class Q312 {
 		for (int k = 2; k < n; k++) {
 			for (int left = 0; left < n - k; left++) {
 				int right = left + k;
-				for (int i = left + 1; i < right; i++)
+				for (int i = left + 1; i < right; i++) {
 					dp[left][right] = Math.max(dp[left][right], arr[left] * arr[i] * arr[right] + dp[left][i] + dp[i][right]);
+				}
 			}
 		}
 
