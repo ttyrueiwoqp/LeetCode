@@ -26,13 +26,13 @@ import java.util.Deque;
 public class Q306 {
 
 	public boolean isAdditiveNumber(String num) {
-		if (num.length() < 3) {
+		int len = num.length();
+		if (len < 3) {
 			return false;
 		}
 
-		for (int i = 1; i <= num.length() / 3; i++) {
-			int jLen = i + (num.length() - i) / 2;
-			for (int j = i + 1; j <= jLen; j++) {
+		for (int i = 1; i <= (len - 1) / 2; i++) {
+			for (int j = i + 1; len - j >= j - i && len - j >= i; j++) {
 				long a = atoi(num, 0, i);
 				long b = atoi(num, i, j);
 				if (getNextIdx(num, a, b, j)) {
