@@ -11,7 +11,7 @@ public class Q121 {
 		if (prices.length < 2) {
 			return 0;
 		}
-		
+
 		int res = 0;
 		int min = prices[0];
 
@@ -31,7 +31,7 @@ public class Q121 {
 	public void test() {
 		int[] a = { 3, 5, 4, 8, 1, 7 };
 		assertEquals(6, maxProfit(a));
-		
+
 		int[] b = { 8, 6, 3, 2 };
 		assertEquals(0, maxProfit(b));
 	}
