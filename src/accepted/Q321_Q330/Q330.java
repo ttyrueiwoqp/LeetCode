@@ -37,7 +37,8 @@ import static org.junit.Assert.assertEquals;
 public class Q330 {
 
 	public int minPatches(int[] nums, int n) {
-		int miss = 1, res = 0, i = 0;
+		long miss = 1;
+		int res = 0, i = 0;
 
 		while (miss <= n) {
 			if (i < nums.length && nums[i] <= miss) {
