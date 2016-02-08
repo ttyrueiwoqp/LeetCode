@@ -30,8 +30,8 @@ public class Q316 {
 
 		char[] chars = s.toCharArray();
 		List<Character> list = new ArrayList<>();
-
 		Map<Character, Integer> m = new HashMap<>();
+
 		for (char c : chars) {
 			Integer cnt = m.get(c);
 			if (cnt == null) {
@@ -41,38 +41,16 @@ public class Q316 {
 		}
 
 		for (char c : chars) {
-			if (list.isEmpty()) {
-				list.add(c);
-
-			} else {
-				Character last = list.get(list.size() - 1);
-				if (c < last) {
-
-					if (list.contains(c)) {
-						int prevIdx = list.indexOf(c);
-						if (prevIdx + 1 < list.size() && list.get(prevIdx + 1) < c){
-							list.remove(prevIdx);
-							list.add(c);
-						}
-
-					} else {
-						while (!list.isEmpty()) {
-							last = list.get(list.size() - 1);
-							if (c < last && m.get(last) > 0) {
-								list.remove(list.size() - 1);
-							} else {
-								break;
-							}
-						}
-						list.add(c);
-					}
-				} else {
-					if (!list.contains(c)) {
-						list.add(c);
-					}
-				}
-			}
 			m.put(c, m.get(c) - 1);
+			if (list.contains(c)) {
+				continue;
+			}
+			while (!list.isEmpty()
+					&& c < list.get(list.size() - 1)
+					&& m.get(list.get(list.size() - 1)) > 0) {
+				list.remove(list.size() - 1);
+			}
+			list.add(c);
 		}
 
 		StringBuilder sb = new StringBuilder();
