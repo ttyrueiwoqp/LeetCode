@@ -15,11 +15,40 @@ import java.util.Stack;
  * You may assume k is always valid, 1 ? k ? array's length.
  */
 public class Q215 {
-	/**
-	 * Easier solution exists when modify the pivot of quick sort.
-	 */
 	public int findKthLargest(int[] nums, int k) {
-		Arrays.sort(nums);
-		return nums[nums.length - k];
+		return kthSmallest(nums, nums.length + 1 - k, 0, nums.length - 1);
+	}
+
+	private int kthSmallest(int[] nums, int k, int st, int end) {
+		if (k < 0 && k > end - st + 1) {
+			return -1;
+		}
+
+		int pos = partition(nums, st, end);
+		if (pos - st == k - 1) {
+			return nums[pos];
+		} else if (pos - st > k - 1) {
+			return kthSmallest(nums, k, st, pos - 1);
+		} else {
+			return kthSmallest(nums, k - 1 - pos + st, pos + 1, end);
+		}
+	}
+
+	private int partition(int[] nums, int st, int end) {
+		int idx = st;
+		for (int i = st; i < end; i++) {
+			if (nums[i] <= nums[end]) {
+				swap(nums, i, idx);
+				idx++;
+			}
+		}
+		swap(nums, idx, end);
+		return idx;
+	}
+
+	private void swap(int[] nums, int i, int j) {
+		int temp = nums[i];
+		nums[i] = nums[j];
+		nums[j] = temp;
 	}
 }
