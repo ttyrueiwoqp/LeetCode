@@ -59,11 +59,8 @@ public class Q330 {
 		int[] a = {1, 3};
 		int[] b = {1, 5, 10};
 		int[] c = {1, 2, 2};
-		int[] d = {1, 2, 31, 33};
 		assertEquals(1, minPatches(a, 6));
 		assertEquals(2, minPatches(b, 20));
 		assertEquals(0, minPatches(c, 5));
-
-		System.out.println(minPatches(d, 2147483));
 	}
 }
