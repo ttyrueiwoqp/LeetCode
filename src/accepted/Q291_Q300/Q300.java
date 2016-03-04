@@ -2,6 +2,9 @@ package accepted.Q291_Q300;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by FJ on 11/8/2015.
  * <p/>
@@ -18,6 +21,29 @@ import org.junit.Test;
 public class Q300 {
 
 	public int lengthOfLIS(int[] nums) {
+		if (nums.length == 0) {
+			return 0;
+		}
+
+		List<Integer> list = new ArrayList<>();
+		list.add(nums[0]);
+		for (int i = 1; i < nums.length; i++) {
+			if (nums[i] > list.get(list.size() - 1)) {
+				list.add(nums[i]);
+			} else {
+				for (int j = 0; j < list.size(); j++) {
+					if (nums[i] <= list.get(j)) {
+						list.set(j, nums[i]);
+						break;
+					}
+				}
+			}
+		}
+
+		return list.size();
+	}
+
+	public int lengthOfLIS2(int[] nums) {
 
 		int maxLen = 0;
 		int[] lens = new int[nums.length];
