@@ -44,6 +44,7 @@ public class Q099 {
 		}
 
 		traverse(root.left);
+
 		if (root.val <= prev.val) {
 			if (first == null) {
 				first = prev;
