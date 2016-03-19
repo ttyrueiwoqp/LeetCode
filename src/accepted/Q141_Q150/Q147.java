@@ -21,6 +21,9 @@ public class Q147 {
 		ListNode p = pHead;
 
 		while (p != null) {
+			if (curr.val > p.val) {
+				curr = res;
+			}
 			while (curr.next != null && p.val > curr.next.val) {
 				curr = curr.next;
 			}
@@ -29,7 +32,6 @@ public class Q147 {
 			curr.next = p;
 
 			p = pHead;
-			curr = res;
 		}
 
 		return res.next;
