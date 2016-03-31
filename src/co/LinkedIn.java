@@ -24,6 +24,7 @@ import accepted.Q201_Q210.Q205;
 import accepted.Q231_Q240.Q236;
 import accepted.Q231_Q240.Q238;
 import accepted.Q291_Q300.Q297;
+import accepted.Q331_Q340.Q339;
 import qns.*;
 
 /**
@@ -47,6 +48,7 @@ public class LinkedIn {
             Q046.class,
             Q047.class,
             Q256.class,
+            Q339.class,
             Q076.class,
             Q021.class,
             Q023.class,
