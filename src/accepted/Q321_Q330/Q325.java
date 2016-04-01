@@ -1,6 +1,7 @@
-package qns;
+package accepted.Q321_Q330;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -23,19 +24,20 @@ import java.util.HashMap;
 public class Q325 {
 
     public int maxSubArrayLen(int[] nums, int k) {
-
-        return k;
-    }
-
-    public int sln(int[] nums, int k) {
         int sum = 0, max = 0;
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> m = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
-            sum = sum + nums[i];
-            if (sum == k) max = i + 1;
-            else if (map.containsKey(sum - k)) max = Math.max(max, i - map.get(sum - k));
-            if (!map.containsKey(sum)) map.put(sum, i);
+            sum += nums[i];
+            if (sum == k) {
+                max = i + 1;
+            } else if (m.containsKey(sum - k)) {
+                max = Math.max(max, i - m.get(sum - k));
+            }
+            if (!m.containsKey(sum)) {
+                m.put(sum, i);
+            }
         }
         return max;
     }
+
 }
