@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q291_Q300;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +25,14 @@ import java.util.List;
 public class Q293 {
 
     public List<String> generatePossibleNextMoves(String s) {
-
-        return null;
+        List<String> res = new ArrayList<>();
+        char[] cs = s.toCharArray();
+        for (int i = 0; i < cs.length - 1; i++) {
+            if (cs[i] == '+' && cs[i + 1] == '+') {
+                res.add(s.substring(0, i) + "--" + s.substring(i + 2));
+            }
+        }
+        return res;
     }
 
     public List<String> sln(String s) {
