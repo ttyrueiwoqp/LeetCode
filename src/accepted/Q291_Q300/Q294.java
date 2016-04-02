@@ -1,6 +1,8 @@
-package qns;
+package accepted.Q291_Q300;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,9 +23,22 @@ import java.util.Map;
 public class Q294 {
 
     public boolean canWin(String s) {
+        if (s == null || s.length() < 2) {
+            return false;
+        }
+
+        char[] cs = s.toCharArray();
+        for (int i = 0; i < cs.length - 1; i++) {
+            if (cs[i] == '+' && cs[i + 1] == '+') {
+                if (!canWin(s.substring(0, i) + "++" + s.substring(i + 2))) {
+                    return true;
+                }
+            }
+        }
 
         return false;
     }
+
 
     public boolean sln(String s) {
         if (s == null || s.length() < 2) {
@@ -44,17 +59,17 @@ public class Q294 {
     }
 
     public boolean sln2(String s) {
-        if(s == null || s.length() < 2) return false;
+        if (s == null || s.length() < 2) return false;
         Map<String, Boolean> map = new HashMap<>();
         return canWin(s, map);
     }
 
-    public boolean canWin(String s, Map<String, Boolean> map){
-        if(map.containsKey(s)) return map.get(s);
-        for(int i = 0; i < s.length() - 1; i++) {
-            if(s.charAt(i) == '+' && s.charAt(i + 1) == '+') {
+    public boolean canWin(String s, Map<String, Boolean> map) {
+        if (map.containsKey(s)) return map.get(s);
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) == '+' && s.charAt(i + 1) == '+') {
                 String opponent = s.substring(0, i) + "--" + s.substring(i + 2);
-                if(!canWin(opponent, map)) {
+                if (!canWin(opponent, map)) {
                     map.put(s, true);
                     return true;
                 }
