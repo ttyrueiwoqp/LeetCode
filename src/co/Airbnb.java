@@ -10,7 +10,7 @@ import accepted.Q211_Q220.Q219;
 import accepted.Q211_Q220.Q220;
 import accepted.Q221_Q230.Q221;
 import qns.Q251;
-import qns.Q269;
+import accepted.Q261_Q270.Q269;
 
 /**
  * Created by lvfan on 3/27/2016.
