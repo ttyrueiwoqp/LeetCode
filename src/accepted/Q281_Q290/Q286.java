@@ -1,5 +1,9 @@
-package qns;
+package accepted.Q281_Q290;
 
+import org.junit.Test;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -28,9 +32,67 @@ import java.util.Queue;
  */
 public class Q286 {
 
+    private static final int WALL = -1;
+    private static final int GATE = 0;
+    private static final int INF = Integer.MAX_VALUE;
+
     public void wallsAndGates(int[][] rooms) {
 
+        Deque<Integer> x = new ArrayDeque<>();
+        Deque<Integer> y = new ArrayDeque<>();
+        for (int i = 0; i < rooms.length; i++) {
+            for (int j = 0; j < rooms[i].length; j++) {
+                if (rooms[i][j] == GATE) {
+                    x.addLast(i);
+                    y.addLast(j);
+                }
+            }
+        }
+
+        while (!x.isEmpty()) {
+            int i = x.poll();
+            int j = y.poll();
+
+            expand(rooms, i - 1, j, rooms[i][j], x, y);
+            expand(rooms, i, j - 1, rooms[i][j], x, y);
+            expand(rooms, i + 1, j, rooms[i][j], x, y);
+            expand(rooms, i, j + 1, rooms[i][j], x, y);
+        }
     }
+
+    private void expand(int[][] rooms, int i, int j, int dist, Deque<Integer> x, Deque<Integer> y) {
+        if (i < 0 || i >= rooms.length
+                || j < 0 || j >= rooms[i].length
+                || rooms[i][j] <= 0) {
+            return;
+        }
+
+        if (rooms[i][j] == INF) {
+            rooms[i][j] = dist + 1;
+            x.addLast(i);
+            y.addLast(j);
+        }
+    }
+
+    @Test
+    public void test() {
+        int[][] a = {
+                {INF, -1, 0, INF},
+                {INF, INF, INF, -1},
+                {INF, -1, INF, -1},
+                {0, -1, INF, INF}
+        };
+
+        wallsAndGates(a);
+
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[i].length; j++) {
+                System.out.print(a[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
 
     public void sln(int[][] rooms) {
         for (int i = 0; i < rooms.length; i++)
