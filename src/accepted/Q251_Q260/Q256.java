@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q251_Q260;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -18,7 +18,16 @@ public class Q256 {
 
     public int minCost(int[][] costs) {
 
-        return 0;
+        int[][] mins = new int[2][3];
+        int idx = 0;
+        for (int i = 0; i < costs.length; i++) {
+            for (int j = 0; j < 3; j++) {
+                mins[1 - idx][j] = costs[i][j] + Math.min(mins[idx][(j + 1) % 3], mins[idx][(j + 2 ) % 3]);
+            }
+            idx = 1 - idx;
+        }
+
+        return Math.min(mins[idx][0], Math.min(mins[idx][1], mins[idx][2]));
     }
 
     public int sln(int[][] costs) {
