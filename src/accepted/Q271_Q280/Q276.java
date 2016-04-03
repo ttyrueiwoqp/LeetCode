@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q271_Q280;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -16,7 +16,18 @@ public class Q276 {
 
     public int numWays(int n, int k) {
 
-        return n;
+        if (n < 2 || k == 0) {
+            return n * k;
+        }
+
+        int s = k, d = k * (k - 1);
+        for (int i = 2; i < n; i++) {
+            int t = d;
+            d = (k - 1) * (d + s);
+            s = t;
+        }
+
+        return s + d;
     }
 
     public int sln(int n, int k) {
