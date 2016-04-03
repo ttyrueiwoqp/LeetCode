@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q261_Q270;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,8 +21,16 @@ import java.util.Set;
 public class Q266 {
 
     public boolean canPermutePalindrome(String s) {
+        Set<Character> res = new HashSet<>();
+        for (char c : s.toCharArray()) {
+            if (res.contains(c)) {
+                res.remove(c);
+            } else {
+                res.add(c);
+            }
+        }
 
-        return false;
+        return res.size() < 2;
     }
 
     public boolean sln(String s) {
