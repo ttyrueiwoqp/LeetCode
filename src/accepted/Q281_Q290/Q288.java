@@ -1,6 +1,9 @@
-package qns;
+package accepted.Q281_Q290;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -33,13 +36,33 @@ import java.util.HashMap;
  */
 public class Q288 {
 
-    public Q288(String[] dictionary) {
+    Map<String, Set<String>> m;
 
+    public Q288(String[] dictionary) {
+        m = new HashMap<>();
+        for (String d : dictionary) {
+            if (d.length() > 2) {
+                String abbr = toAbbr(d);
+                Set<String> ds = m.get(abbr);
+                if (ds == null) {
+                    ds = new HashSet<>();
+                    m.put(abbr, ds);
+                }
+                ds.add(d);
+            }
+        }
     }
 
     public boolean isUnique(String word) {
+        if (word.length() <= 2) {
+            return true;
+        }
+        Set<String> ds = m.get(toAbbr(word));
+        return ds == null || (ds.contains(word) && ds.size() == 1);
+    }
 
-        return false;
+    private String toAbbr(String word) {
+        return word.charAt(0) + String.valueOf(word.length() - 2) + word.charAt(word.length() - 1);
     }
 }
 
