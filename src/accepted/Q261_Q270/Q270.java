@@ -1,5 +1,6 @@
-package qns;
+package accepted.Q261_Q270;
 
+import org.junit.Test;
 import util.TreeNode;
 
 /**
@@ -14,9 +15,33 @@ import util.TreeNode;
 public class Q270 {
 
     public int closestValue(TreeNode root, double target) {
+        TreeNode curr = root;
+        TreeNode res = root;
 
-        return 0;
+        double min = Math.abs(root.val - target);
+        while (curr != null) {
+            double diff = Math.abs(curr.val - target);
+            if (min > diff) {
+                min = diff;
+                res = curr;
+            }
+
+            if (target == curr.val) {
+                return curr.val;
+            } else if (target < curr.val) {
+                curr = curr.left;
+            } else {
+                curr = curr.right;
+            }
+        }
+
+        return res.val;
     }
+
+    @Test
+    public void test() {
+    }
+
 
     public int sln(TreeNode root, double target) {
         int a = root.val;
