@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q161_Q170;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,17 +18,33 @@ import java.util.Map;
  */
 public class Q170 {
 
+    Map<Integer, Integer> m = new HashMap<>();
+
     // Add the number to an internal data structure.
     public void add(int number) {
-
+        Integer cnt = m.get(number);
+        if (cnt == null) {
+            m.put(number, 1);
+        } else {
+            m.put(number, cnt + 1);
+        }
     }
 
     // Find if there exists any pair of numbers which sum is equal to the value.
     public boolean find(int value) {
-
+        for (Map.Entry<Integer, Integer> e : m.entrySet()) {
+            int i = e.getKey();
+            int j = value - i;
+            if (m.containsKey(j)) {
+                if (i != j) {
+                    return true;
+                } else if (m.get(j) > 1) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
-
 
 }
 
