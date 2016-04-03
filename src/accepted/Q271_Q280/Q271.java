@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q271_Q280;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,20 +39,36 @@ public class Q271 {
 
     // Encodes a list of strings to a single string.
     public String encode(List<String> strs) {
-
-        return null;
+        StringBuilder sb = new StringBuilder();
+        for (String str : strs) {
+            sb.append(str.length()).append(' ').append(str);
+        }
+        return sb.toString();
     }
 
     // Decodes a single string to a list of strings.
     public List<String> decode(String s) {
+        List<String> res = new ArrayList<>();
 
-        return null;
+        int st = 0;
+        while (st < s.length()) {
+            int i = st;
+            while (s.charAt(i) != ' ') {
+                i++;
+            }
+            Integer len = Integer.parseInt(s.substring(st, i));
+            st = i + 1 + len;
+            res.add(s.substring(i + 1, st));
+        }
+
+        return res;
     }
 }
 
 // Your Codec object will be instantiated and called as such:
 // Codec codec = new Codec();
 // codec.decode(codec.encode(strs));
+
 
 class Codec {
 
