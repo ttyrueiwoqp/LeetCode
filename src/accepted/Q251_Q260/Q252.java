@@ -1,9 +1,11 @@
-package qns;
+package accepted.Q251_Q260;
 
 import util.Interval;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -18,8 +20,23 @@ import java.util.Comparator;
 public class Q252 {
 
     public boolean canAttendMeetings(Interval[] intervals) {
+        Map<Integer, Integer> m = new TreeMap<>();
+        for (Interval i : intervals) {
+            if (m.containsKey(i.start)) {
+                return false;
+            }
+            m.put(i.start, i.end);
+        }
 
-        return false;
+        int last = -1;
+        for (Map.Entry<Integer, Integer> e : m.entrySet()) {
+            if (e.getKey() < last) {
+                return false;
+            }
+            last = e.getValue();
+        }
+
+        return true;
     }
 
     public boolean sln1(Interval[] intervals) {
@@ -27,11 +44,7 @@ public class Q252 {
             return false;
 
         // Sort the intervals by start time
-        Arrays.sort(intervals, new Comparator<Interval>() {
-            public int compare(Interval a, Interval b) {
-                return a.start - b.start;
-            }
-        });
+        Arrays.sort(intervals, (a, b) -> a.start - b.start);
 
         for (int i = 1; i < intervals.length; i++)
             if (intervals[i].start < intervals[i - 1].end)
