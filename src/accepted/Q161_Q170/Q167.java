@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q161_Q170;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -18,7 +18,21 @@ public class Q167 {
 
     public int[] twoSum(int[] numbers, int target) {
 
-        return numbers;
+        int[] res = new int[2];
+        int i = 0, j = numbers.length - 1;
+        while (i < j) {
+            if (numbers[i] + numbers[j] == target) {
+                res[0] = i + 1;
+                res[1] = j + 1;
+                return res;
+            } else if (numbers[i] + numbers[j] < target) {
+                i++;
+            } else {
+                j--;
+            }
+        }
+
+        return res;
     }
 
     public int[] sln(int[] num, int target) {
@@ -32,9 +46,9 @@ public class Q167 {
                 indice[1] = right + 1;
                 break;
             } else if (v > target) {
-                right --;
+                right--;
             } else {
-                left ++;
+                left++;
             }
         }
         return indice;
