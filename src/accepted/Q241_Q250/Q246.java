@@ -1,4 +1,6 @@
-package qns;
+package accepted.Q241_Q250;
+
+import org.junit.Test;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -12,8 +14,22 @@ package qns;
 public class Q246 {
 
     public boolean isStrobogrammatic(String num) {
+        int[] a = {0, 1, -1, -1, -1, -1, 9, -1, 8, 6};
 
-        return false;
+        int i = 0, j = num.length() - 1;
+        while (j >= i) {
+            if (a[num.charAt(i) - '0'] != num.charAt(j) - '0') {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+    @Test
+    public void test() {
+        isStrobogrammatic("1");
     }
 
     public boolean sln(String num) {
