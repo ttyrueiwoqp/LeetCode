@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q151_Q160;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -17,17 +17,27 @@ public class Q157 {
     /**
      * @param buf Destination buffer
      * @param n   Maximum number of characters to read
-     * @return    The number of characters read
+     * @return The number of characters read
      */
     public int read(char[] buf, int n) {
 
-        return n;
+        char[] buffer = new char[4];
+        int a = 4, sum = 0;
+        while (sum < n && a == 4) {
+            a = read4(buffer);
+            a = Math.min(a, n - sum);
+            System.arraycopy(buffer, 0, buf, sum, a);
+            sum += a;
+        }
+
+        return sum;
     }
+
 
     /**
      * @param buf Destination buffer
      * @param n   Maximum number of characters to read
-     * @return    The number of characters read
+     * @return The number of characters read
      */
     public int sln(char[] buf, int n) {
 
@@ -37,11 +47,11 @@ public class Q157 {
 
         while (readBytes < n && !endOfFile) {
             int currReadBytes = read4(buffer);
-            if (currReadBytes !=4) {
+            if (currReadBytes != 4) {
                 endOfFile = true;
             }
             int length = Math.min(n - readBytes, currReadBytes);
-            for (int i=0; i<length; i++) {
+            for (int i = 0; i < length; i++) {
                 buf[readBytes + i] = buffer[i];
             }
             readBytes += length;
