@@ -1,4 +1,7 @@
-package qns;
+package accepted.Q241_Q250;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -17,8 +20,24 @@ package qns;
 public class Q243 {
     public int shortestDistance(String[] words, String word1, String word2) {
 
-        return 0;
+        int idx1 = -1, idx2 = -1, res = Integer.MAX_VALUE;
+        for (int i = 0; i < words.length; i++) {
+            if (word1.equals(words[i])) {
+                idx1 = i;
+                if (idx2 >= 0) {
+                    res = Math.min(res, Math.abs(idx1 - idx2));
+                }
+            } else if (word2.equals(words[i])) {
+                idx2 = i;
+                if (idx1 >= 0) {
+                    res = Math.min(res, Math.abs(idx1 - idx2));
+                }
+            }
+        }
+
+        return res;
     }
+
 
     public int sln(String[] words, String word1, String word2) {
         int p1 = -1, p2 = -1, min = Integer.MAX_VALUE;
