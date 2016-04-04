@@ -23,7 +23,7 @@ import accepted.Q201_Q210.Q206;
 import accepted.Q201_Q210.Q208;
 import accepted.Q331_Q340.Q337;
 import qns.Q161;
-import qns.Q249;
+import accepted.Q241_Q250.Q249;
 import accepted.Q261_Q270.Q266;
 
 /**
