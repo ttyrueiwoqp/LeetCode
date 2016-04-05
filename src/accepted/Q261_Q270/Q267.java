@@ -1,9 +1,8 @@
-package qns;
+package accepted.Q261_Q270;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.junit.Test;
+
+import java.util.*;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -27,8 +26,82 @@ public class Q267 {
 
     public List<String> generatePalindromes(String s) {
 
-        return null;
+        StringBuilder mid = new StringBuilder();
+        Set<Character> set = new HashSet<>();
+        List<Character> list = new ArrayList<>();
+        Set<String> res = new HashSet<>();
+
+        for (char c : s.toCharArray()) {
+            if (set.contains(c)) {
+                list.add(c);
+                set.remove(c);
+            } else {
+                set.add(c);
+            }
+        }
+
+        if (set.size() > 1) {
+            return new ArrayList<>(res);
+        } else if (set.size() == 1) {
+            mid.append(set.iterator().next());
+        }
+
+        List<String> perms = getPermutations(list);
+        for (String perm : perms) {
+            res.add(perm + mid + new StringBuilder(perm).reverse().toString());
+        }
+
+        return new ArrayList<>(res);
     }
+
+    private List<String> getPermutations(List<Character> cs) {
+        List<String> res = new ArrayList<>();
+        helper(cs, res, new StringBuilder(), new boolean[cs.size()]);
+        return res;
+    }
+
+    private void helper(List<Character> cs, List<String> res, StringBuilder sb, boolean[] used) {
+        if (sb.length() == cs.size()) {
+            res.add(sb.toString());
+            return;
+        }
+
+        for (int i = 0; i < cs.size(); i++) {
+            if (used[i]) {
+                continue;
+            }
+
+            sb.append(cs.get(i));
+            used[i] = true;
+
+            helper(cs, res, sb, used);
+
+            sb.deleteCharAt(sb.length() - 1);
+            used[i] = false;
+        }
+    }
+
+    @Test
+    public void test() {
+        System.out.println(generatePalindromes("aabb"));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public List<String> sln(String s) {
         int odd = 0;
