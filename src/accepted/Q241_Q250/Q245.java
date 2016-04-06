@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q241_Q250;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -22,8 +22,45 @@ public class Q245 {
 
     public int shortestWordDistance(String[] words, String word1, String word2) {
 
-        return 0;
+        int idx1 = -1, idx2 = -1, res = Integer.MAX_VALUE;
+        boolean diffWord = !word1.equals(word2);
+        int alter = diffWord ? 0 : 1;
+
+        for (int i = 0; i < words.length; i++) {
+            if (word1.equals(words[i]) && alter > -1) {
+                idx1 = i;
+                if (idx2 >= 0) {
+                    res = Math.min(res, Math.abs(idx1 - idx2));
+                }
+                alter = diffWord ? 0 : -1;
+            } else if (word2.equals(words[i]) && alter < 1) {
+                idx2 = i;
+                if (idx1 >= 0) {
+                    res = Math.min(res, Math.abs(idx1 - idx2));
+                }
+                alter = diffWord ? 0 : 1;
+            }
+        }
+
+        return res;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public int sln1(String[] words, String word1, String word2) {
         long dist = Integer.MAX_VALUE, i1 = dist, i2 = -dist;
