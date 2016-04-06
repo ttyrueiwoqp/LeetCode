@@ -1,28 +1,92 @@
 package qns;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by lvfan on 3/27/2016.
  * <p>
- * A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down).
+ * A strobogrammatic number is a number that looks the same when rotated 180 degrees
+ * (looked at upside down).
  * <p>
- * Write a function to count the total strobogrammatic numbers that exist in the range of low <= num <= high.
+ * Write a function to count the total strobogrammatic numbers that exist in the range
+ * of low <= num <= high.
  * <p>
  * For example,
- * Given low = "50", high = "100", return 3. Because 69, 88, and 96 are three strobogrammatic numbers.
+ * Given low = "50", high = "100", return 3. Because 69, 88, and 96
+ * are three strobogrammatic numbers.
  * <p>
  * Note:
- * Because the range might be a large number, the low and high numbers are represented as string.
+ * Because the range might be a large number,
+ * the low and high numbers are represented as string.
  */
 public class Q248 {
 
+    private Map<Integer, List<String>> map = new HashMap<>();
+
     public int strobogrammaticInRange(String low, String high) {
+
+        findStrobogrammatic(high.length(), high.length());
+        findStrobogrammatic(low.length(), low.length());
 
         return 0;
     }
+
+    private void findStrobogrammatic(int n, int m) {
+
+        if (map.containsKey(n)) {
+            return;
+        }
+
+        List<String> res = new ArrayList<>();
+        if (n < 1) {
+            res.add("");
+            map.put(n, res);
+            return;
+
+        } else if (n == 1) {
+            res.add("0");
+            res.add("1");
+            res.add("8");
+            map.put(n, res);
+            return;
+
+        } else {
+            findStrobogrammatic(n - 2, m);
+            List<String> n2 = map.get(n - 2);
+            for (String s : n2) {
+                res.add("0" + s + "0");
+                res.add("1" + s + "1");
+                res.add("6" + s + "9");
+                res.add("8" + s + "8");
+                res.add("9" + s + "6");
+            }
+        }
+
+        map.put(n, res);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     char[][] pairs = {{'0', '0'}, {'1', '1'}, {'6', '9'}, {'8', '8'}, {'9', '6'}};
     int count = 0;
