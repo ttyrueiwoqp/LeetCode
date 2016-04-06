@@ -1,4 +1,6 @@
-package qns;
+package accepted.Q241_Q250;
+
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,20 +26,41 @@ import java.util.Map;
  * <p>
  * Note:
  * You may assume that word1 does not equal to word2, and word1 and word2 are both in the list.
- * <p>
- * Show Company Tags
- * Show Tags
- * Show Similar Problems
  */
 public class Q244 {
 
-    public Q244(String[] words) {
+    private Map<String, List<Integer>> m;
 
+    public Q244(String[] words) {
+        m = new HashMap<>();
+        for (int i = 0; i < words.length; i++) {
+            List<Integer> list = m.get(words[i]);
+            if (list == null) {
+                list = new ArrayList<>();
+                m.put(words[i], list);
+            }
+            list.add(i);
+        }
     }
 
     public int shortest(String word1, String word2) {
 
-        return 0;
+        List<Integer> list1 = m.get(word1);
+        List<Integer> list2 = m.get(word2);
+        int i = 0, j = 0, min = Integer.MAX_VALUE;
+        while (i < list1.size() && j < list2.size()) {
+            Integer idx1 = list1.get(i);
+            Integer idx2 = list2.get(j);
+            if (idx1 < idx2) {
+                min = Math.min(min, idx2 - idx1);
+                i++;
+            } else if (idx1 > idx2) {
+                min = Math.min(min, idx1 - idx2);
+                j++;
+            }
+        }
+
+        return min;
     }
 }
 
@@ -46,15 +69,16 @@ public class Q244 {
 // wordDistance.shortest("word1", "word2");
 // wordDistance.shortest("anotherWord1", "anotherWord2");
 
+
 class WordDistance {
 
     private Map<String, List<Integer>> map;
 
     public WordDistance(String[] words) {
         map = new HashMap<String, List<Integer>>();
-        for(int i = 0; i < words.length; i++) {
+        for (int i = 0; i < words.length; i++) {
             String w = words[i];
-            if(map.containsKey(w)) {
+            if (map.containsKey(w)) {
                 map.get(w).add(i);
             } else {
                 List<Integer> list = new ArrayList<Integer>();
@@ -68,9 +92,9 @@ class WordDistance {
         List<Integer> list1 = map.get(word1);
         List<Integer> list2 = map.get(word2);
         int ret = Integer.MAX_VALUE;
-        for(int i = 0, j = 0; i < list1.size() && j < list2.size(); ) {
+        for (int i = 0, j = 0; i < list1.size() && j < list2.size(); ) {
             int index1 = list1.get(i), index2 = list2.get(j);
-            if(index1 < index2) {
+            if (index1 < index2) {
                 ret = Math.min(ret, index2 - index1);
                 i++;
             } else {
