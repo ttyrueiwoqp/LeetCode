@@ -16,26 +16,19 @@ public class Q161 {
             return false;
         }
 
-        while (s1 < s2 - 1 && t1 < t2 - 1) {
-            if (sArr[s1 + 1] == tArr[t1 + 1]) {
-                s1++;
-                t1++;
-            } else {
-                break;
-            }
+        while (s1 < s2 - 1 && t1 < t2 - 1 && sArr[s1 + 1] == tArr[t1 + 1]) {
+            s1++;
+            t1++;
         }
 
+        // equals
         if (s2 == t2 && s1 == s2 - 1) {
             return false;
         }
 
-        while (s2 > 0 && t2 > 0) {
-            if (sArr[s2 - 1] == tArr[t2 - 1]) {
-                s2--;
-                t2--;
-            } else {
-                break;
-            }
+        while (s2 > 0 && t2 > 0 && sArr[s2 - 1] == tArr[t2 - 1]) {
+            s2--;
+            t2--;
         }
 
         return Math.max(s2 - s1, t2 - t1) < 3;
