@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q241_Q250;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,9 +21,38 @@ import java.util.List;
 public class Q247 {
 
     public List<String> findStrobogrammatic(int n) {
-
-        return null;
+        return findStrobogrammatic(n, n);
     }
+
+    public List<String> findStrobogrammatic(int n, int m) {
+
+        List<String> res = new ArrayList<>();
+        if (n < 1) {
+            res.add("");
+            return res;
+
+        } else if (n == 1) {
+            res.add("0");
+            res.add("1");
+            res.add("8");
+            return res;
+
+        } else {
+            List<String> n2 = findStrobogrammatic(n - 2, m);
+            for (String s : n2) {
+                if (n < m) {
+                    res.add("0" + s + "0");
+                }
+                res.add("1" + s + "1");
+                res.add("6" + s + "9");
+                res.add("8" + s + "8");
+                res.add("9" + s + "6");
+            }
+        }
+
+        return res;
+    }
+
 
     public List<String> sln(int n) {
         return helper(n, n);
