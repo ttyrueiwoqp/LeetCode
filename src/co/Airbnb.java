@@ -9,7 +9,7 @@ import accepted.Q211_Q220.Q217;
 import accepted.Q211_Q220.Q219;
 import accepted.Q211_Q220.Q220;
 import accepted.Q221_Q230.Q221;
-import qns.Q251;
+import accepted.Q251_Q260.Q251;
 import accepted.Q261_Q270.Q269;
 
 /**

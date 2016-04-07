@@ -1,9 +1,6 @@
-package qns;
+package accepted.Q251_Q260;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -33,22 +30,48 @@ import java.util.Queue;
  * Follow up:
  * As an added challenge, try to code it using only iterators in C++ or iterators in Java.
  */
-public class Q251 {
+public class Q251 implements Iterator<Integer> {
+
+    private Iterator<List<Integer>> it = null;
+    private Iterator<Integer> it2 = null;
 
     public Q251(List<List<Integer>> vec2d) {
-
+        if (vec2d == null) {
+            return;
+        }
+        it = vec2d.iterator();
+        if (it.hasNext()) {
+            it2 = it.next().iterator();
+        }
     }
 
-    public int next() {
-
-        return 0;
+    @Override
+    public Integer next() {
+        if (it == null || it2 == null || !it2.hasNext()) {
+            return null;
+        }
+        return it2.next();
     }
 
+    @Override
     public boolean hasNext() {
-
+        if (it == null || it2 == null) {
+            return false;
+        }
+        if (it2.hasNext()) {
+            return true;
+        } else {
+            while (it.hasNext()) {
+                it2 = it.next().iterator();
+                if (it2.hasNext()) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 }
+
 
 /**
  * Your Vector2D object will be instantiated and called as such:
