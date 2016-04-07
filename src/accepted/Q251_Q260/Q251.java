@@ -79,7 +79,7 @@ public class Q251 implements Iterator<Integer> {
  * while (i.hasNext()) v[f()] = i.next();
  */
 
-class Vector2D {
+class Vector2D implements Iterator<Integer>{
 
     Queue<Iterator<Integer>> queue;
     Iterator<Integer> current = null;
@@ -92,12 +92,14 @@ class Vector2D {
         current = queue.poll(); // first
     }
 
-    public int next() {
+    @Override
+    public Integer next() {
         if (!current.hasNext()) return -1;
 
         return current.next();
     }
 
+    @Override
     public boolean hasNext() {
         if (current == null) return false;
 
