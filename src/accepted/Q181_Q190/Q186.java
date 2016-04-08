@@ -1,4 +1,6 @@
-package qns;
+package accepted.Q181_Q190;
+
+import org.junit.Test;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -18,7 +20,35 @@ package qns;
 public class Q186 {
 
     public void reverseWords(char[] s) {
+        if (s == null || s.length == 0) {
+            return;
+        }
 
+        int i = 0, j = 0, space = 0, len = s.length;
+        reverse(s, i, len - 1);
+        while (space < len) {
+            while (space < len && s[space] != ' ') {
+                space++;
+            }
+            j = space - 1;
+            reverse(s, i, j);
+            i = ++space;
+        }
+    }
+
+    private void reverse(char[] s, int i, int j) {
+        while (i < j) {
+            char temp = s[i];
+            s[i] = s[j];
+            s[j] = temp;
+            i++;
+            j--;
+        }
+    }
+
+    @Test
+    public void test() {
+        reverseWords("a".toCharArray());
     }
 
     public void sln(char[] s) {
@@ -38,13 +68,4 @@ public class Q186 {
         reverse(s, start, s.length - 1);
     }
 
-    public void reverse(char[] s, int start, int end) {
-        while (start < end) {
-            char temp = s[start];
-            s[start] = s[end];
-            s[end] = temp;
-            start++;
-            end--;
-        }
-    }
 }
