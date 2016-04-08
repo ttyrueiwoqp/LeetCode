@@ -1,7 +1,8 @@
-package qns;
+package accepted.Q321_Q330;
 
-import java.util.HashSet;
-import java.util.Set;
+import org.junit.Test;
+
+import java.util.*;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -29,8 +30,48 @@ public class Q323 {
 
     public int countComponents(int n, int[][] edges) {
 
-        return n;
+        int res = 0;
+        Map<Integer, List<Integer>> m = new HashMap<>();
+        Deque<Integer> queue = new ArrayDeque<>();
+        Set<Integer> remain = new HashSet<>();
+
+        for (int i = 0; i < n; i++) {
+            m.put(i, new ArrayList<>());
+            remain.add(i);
+        }
+
+        for (int[] edge : edges) {
+            m.get(edge[0]).add(edge[1]);
+            m.get(edge[1]).add(edge[0]);
+        }
+
+        while (remain.size() > 0) {
+            queue.addLast(remain.iterator().next());
+            while (!queue.isEmpty()) {
+                Integer key = queue.poll();
+                remain.remove(key);
+                List<Integer> list = m.get(key);
+                for (Integer i : list) {
+                    if (remain.contains(i)) {
+                        remain.remove(i);
+                        queue.addLast(i);
+                    }
+                }
+            }
+            res++;
+        }
+
+        return res;
     }
+
+    @Test
+    public void test() {
+        int[][] a = {{0, 1}, {1, 2}, {0, 2}, {3, 4}};
+        System.out.println(countComponents(5, a));
+        int[][] b = {{0, 2}, {1, 2}};
+        System.out.println(countComponents(3, b));
+    }
+
 
     private int[] father;
 
