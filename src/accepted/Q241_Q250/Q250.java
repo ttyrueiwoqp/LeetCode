@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q241_Q250;
 
 import util.TreeNode;
 
@@ -21,11 +21,6 @@ import util.TreeNode;
 public class Q250 {
 
     public int countUnivalSubtrees(TreeNode root) {
-
-        return 0;
-    }
-
-    public int sln(TreeNode root) {
         int[] count = new int[1];
         helper(root, count);
         return count[0];
