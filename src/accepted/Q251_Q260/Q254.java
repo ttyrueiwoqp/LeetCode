@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q251_Q260;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +44,29 @@ import java.util.List;
 public class Q254 {
 
     public List<List<Integer>> getFactors(int n) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (n < 4){
+            return res;
+        }
+        fill(res, new ArrayList<>(), -1, n);
+        return res;
+    }
 
-        return null;
+    private void fill(List<List<Integer>> res, List<Integer> list, int st, int n) {
+        if (st != -1) {
+            list.add(n);
+            res.add(new ArrayList<>(list));
+            list.remove(list.size() - 1);
+        }
+        int limit = (int) Math.sqrt(n);
+        st = Math.max(2, st);
+        for (int i = st; i <= limit; i++) {
+            if (n % i == 0) {
+                list.add(i);
+                fill(res, list, i, n / i);
+                list.remove(list.size() - 1);
+            }
+        }
     }
 
     public List<List<Integer>> sln(int n) {
@@ -54,7 +75,7 @@ public class Q254 {
         return result;
     }
 
-    public void helper(List<List<Integer>> result, List<Integer> item, int n, int start){
+    public void helper(List<List<Integer>> result, List<Integer> item, int n, int start) {
         if (n <= 1) {
             if (item.size() > 1) {
                 result.add(new ArrayList<Integer>(item));
@@ -65,8 +86,8 @@ public class Q254 {
         for (int i = start; i <= n; ++i) {
             if (n % i == 0) {
                 item.add(i);
-                helper(result, item, n/i, i);
-                item.remove(item.size()-1);
+                helper(result, item, n / i, i);
+                item.remove(item.size() - 1);
             }
         }
     }
