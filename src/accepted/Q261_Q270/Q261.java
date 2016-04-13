@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q261_Q270;
 
 import java.util.Arrays;
 
@@ -27,7 +27,29 @@ public class Q261 {
 
     public boolean validTree(int n, int[][] edges) {
 
-        return false;
+        if (edges.length != n - 1) {
+            return false;
+        }
+
+        int[] nums = new int[n];
+        Arrays.fill(nums, -1);
+
+        for (int[] edge : edges) {
+            int i = helper(nums, edge[0]);
+            int j = helper(nums, edge[1]);
+            if (i == j) {
+                return false;
+            }
+            nums[i] = j;
+        }
+        return true;
+    }
+
+    private int helper(int[] nums, int i) {
+        while (nums[i] != -1) {
+            i = nums[i];
+        }
+        return i;
     }
 
     public boolean sln(int n, int[][] edges) {
