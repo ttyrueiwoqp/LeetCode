@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q271_Q280;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -22,7 +22,38 @@ public class Q277 {
 
     public int findCelebrity(int n) {
 
-        return n;
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (i == 1 && j == 1) {
+                    continue;
+                }
+
+                if (knows(i, j)) {
+                    arr[i] = 1;
+                } else {
+                    arr[j] = 1;
+                }
+
+                if (i == 1 && j == 1) {
+                    continue;
+                }
+
+                if (knows(j, i)) {
+                    arr[j] = 1;
+                } else {
+                    arr[i] = 1;
+                }
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == 0) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     private boolean knows(int a, int b) {
