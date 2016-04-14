@@ -1,5 +1,6 @@
-package qns;
+package accepted.Q281_Q290;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,18 +30,40 @@ import java.util.List;
  */
 public class Q281 {
 
-    public Q281(List<Integer> v1, List<Integer> v2) {
+    private List<Iterator<Integer>> its = new ArrayList<>();
+    private int idx = 0;
+    private boolean hasMore = true;
 
+    public Q281(List<Integer> v1, List<Integer> v2) {
+        its.add(v1.iterator());
+        its.add(v2.iterator());
     }
 
     public int next() {
-
-        return 0;
+        int res = its.get(idx).next();
+        nextIdx();
+        return res;
     }
 
     public boolean hasNext() {
+        if (hasMore) {
+            int i = 0;
+            while (!its.get(idx).hasNext() && i < its.size()) {
+                nextIdx();
+                i++;
+            }
+            if (i == its.size()) {
+                hasMore = false;
+            }
+        }
+        return its.get(idx).hasNext();
+    }
 
-        return false;
+    private void nextIdx() {
+        idx++;
+        if (idx == its.size()) {
+            idx = 0;
+        }
     }
 }
 
