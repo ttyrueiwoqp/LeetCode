@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q271_Q280;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -10,7 +10,23 @@ package qns;
 public class Q280 {
 
     public void wiggleSort(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            if (i % 2 == 1) {
+                if (nums[i - 1] > nums[i]) {
+                    swap(nums, i - 1, i);
+                }
+            } else {
+                if (i != 0 && nums[i - 1] < nums[i]) {
+                    swap(nums, i - 1, i);
+                }
+            }
+        }
+    }
 
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 
     public void sln(int[] nums) {
