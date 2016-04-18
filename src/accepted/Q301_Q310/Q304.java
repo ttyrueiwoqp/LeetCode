@@ -41,7 +41,9 @@ public class Q304 {
 		for (int i = 1; i < width; i++) {
 			for (int j = 1; j < height; j++) {
 				sums[i][j] += matrix[i - 1][j - 1] + sums[i - 1][j] + sums[i][j - 1] - sums[i - 1][j - 1];
+				System.out.print(sums[i][j] + " ");
 			}
+			System.out.println();
 		}
 	}
 
@@ -51,9 +53,16 @@ public class Q304 {
 		return sums[row2][col2] - sums[row1][col2] - sums[row2][col1] + sums[row1][col1];
 	}
 
-	public static void main() {
-		int[][] matrix = {{-1}};
+	public static void main(String[] args) {
+		int[][] matrix = {
+				{3, 0, 1, 4, 2},
+				{5, 6, 3, 2, 1},
+				{1, 2, 0, 1, 5},
+				{4, 1, 0, 1, 7},
+				{1, 0, 3, 0, 5}
+		};
+
 		Q304 q = new Q304(matrix);
-		System.out.println(q.sumRegion(0, 0, 0, 0));
+		System.out.println(q.sumRegion(2,1,4,3));
 	}
 }

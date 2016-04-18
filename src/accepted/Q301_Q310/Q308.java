@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q301_Q310;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -27,18 +27,62 @@ package qns;
  */
 public class Q308 {
 
+    private int[][] colSums;
+    private int[][] matrix;
+
     public Q308(int[][] matrix) {
 
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return;
+        }
+
+        this.matrix = matrix;
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        colSums = new int[m + 1][n];
+
+        for (int i = 1; i <= m; i++) {
+            for (int j = 0; j < n; j++) {
+                colSums[i][j] = colSums[i - 1][j] + matrix[i - 1][j];
+            }
+        }
     }
 
     public void update(int row, int col, int val) {
 
+        int diff = val - matrix[row][col];
+        matrix[row][col] = val;
+
+        int m = matrix.length;
+        for (int i = row; i < m; i++) {
+            colSums[i + 1][col] += diff;
+        }
     }
 
     public int sumRegion(int row1, int col1, int row2, int col2) {
-
-        return row1;
+        int res = 0;
+        for (int j = col1; j <= col2; j++) {
+            res += colSums[row2 + 1][j] - colSums[row1][j];
+        }
+        return res;
     }
+
+    public static void main(String[] args) {
+        int[][] matrix = {
+                {3, 0, 1, 4, 2},
+                {5, 6, 3, 2, 1},
+                {1, 2, 0, 1, 5},
+                {4, 1, 0, 1, 7},
+                {1, 0, 3, 0, 5}
+        };
+
+        Q308 q = new Q308(matrix);
+        System.out.println(q.sumRegion(2, 1, 4, 3));
+        q.update(3,2,2);
+        System.out.println(q.sumRegion(2, 1, 4, 3));
+    }
+
 }
 
 // Your NumMatrix object will be instantiated and called as such:
@@ -58,7 +102,7 @@ class NumMatrix {
         if (matrix.length == 0 || matrix[0].length == 0) return;
         m = matrix.length;
         n = matrix[0].length;
-        tree = new int[m+1][n+1];
+        tree = new int[m + 1][n + 1];
         nums = new int[m][n];
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
@@ -80,7 +124,7 @@ class NumMatrix {
 
     public int sumRegion(int row1, int col1, int row2, int col2) {
         if (m == 0 || n == 0) return 0;
-        return sum(row2+1, col2+1) + sum(row1, col1) - sum(row1, col2+1) - sum(row2+1, col1);
+        return sum(row2 + 1, col2 + 1) + sum(row1, col1) - sum(row1, col2 + 1) - sum(row2 + 1, col1);
     }
 
     public int sum(int row, int col) {
