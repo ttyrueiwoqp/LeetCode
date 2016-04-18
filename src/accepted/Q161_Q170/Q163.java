@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q161_Q170;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,33 @@ public class Q163 {
 
     public List<String> findMissingRanges(int[] nums, int lower, int upper) {
 
-        return null;
+        List<String> res = new ArrayList<>();
+        if (nums.length == 0) {
+            add(res, lower - 1, upper + 1);
+            return res;
+        }
+
+        add(res, lower - 1, nums[0]);
+        for (int i = 0; i < nums.length - 1; i++) {
+            add(res, nums[i], nums[i + 1]);
+        }
+        add(res, nums[nums.length - 1], upper + 1);
+
+        return res;
+    }
+
+    private void add(List<String> res, int a, int b) {
+        String s = "";
+        if (a + 1 < b) {
+            s += (a + 1);
+        }
+        if (a + 1 < b - 1) {
+            s += "->" + (b - 1);
+        }
+
+        if (!s.isEmpty()) {
+            res.add(s);
+        }
     }
 
     public List<String> sln(int[] a, int lo, int hi) {
