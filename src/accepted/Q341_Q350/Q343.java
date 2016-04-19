@@ -26,6 +26,6 @@ public class Q343 {
         }
         int cnt2 = (3 - n % 3) % 3;
         int cnt3 = (n - cnt2 * 2) / 3;
-        return ((int) Math.pow(3, cnt3)) * ((int) Math.pow(2, cnt2));
+        return (int) Math.pow(3, cnt3) * (int) Math.pow(2, cnt2);
     }
 }
