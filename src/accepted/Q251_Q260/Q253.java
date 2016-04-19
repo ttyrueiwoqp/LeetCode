@@ -1,5 +1,6 @@
-package qns;
+package accepted.Q251_Q260;
 
+import org.junit.Test;
 import util.Interval;
 
 import java.util.Arrays;
@@ -20,8 +21,38 @@ public class Q253 {
 
     public int minMeetingRooms(Interval[] intervals) {
 
-        return 0;
+        int res = 0, cnt = 0;
+
+        Interval[] starts = Arrays.copyOf(intervals, intervals.length);
+        Interval[] ends = Arrays.copyOf(intervals, intervals.length);
+
+        Arrays.sort(starts, (o1, o2) -> o1.start - o2.start);
+        Arrays.sort(ends, (o1, o2) -> o1.end - o2.end);
+
+        int i = 0, j = 0;
+        while (i < starts.length) {
+            if (starts[i].start < ends[j].end) {
+                i++;
+                cnt++;
+                res = Math.max(res, cnt);
+            } else {
+                j++;
+                cnt--;
+            }
+        }
+
+        return res;
     }
+
+    @Test
+    public void test() {
+        Interval[] a = new Interval[3];
+        a[0] = new Interval(0, 30);
+        a[1] = new Interval(5,10);
+        a[2] = new Interval(15,20);
+        System.out.println(minMeetingRooms(a));
+    }
+
 
     public int sln(Interval[] intervals) {
         if (intervals == null || intervals.length == 0)
