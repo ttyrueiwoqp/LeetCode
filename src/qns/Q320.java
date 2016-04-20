@@ -17,7 +17,17 @@ public class Q320 {
 
     public List<String> generateAbbreviations(String word) {
 
-        return null;
+        List<String> res = new ArrayList<String>();
+        res.add(word);
+
+        int len = word.length();
+        for (int i = 1; i <= len; i++) {
+            for (int j = 0; j < len - i; j++) {
+
+            }
+        }
+
+        return res;
     }
 
     public List<String> sln(String word) {

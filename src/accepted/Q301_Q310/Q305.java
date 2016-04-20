@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q301_Q310;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,8 +50,50 @@ import java.util.List;
 public class Q305 {
 
     public List<Integer> numIslands2(int m, int n, int[][] positions) {
+        List<Integer> res = new ArrayList<>();
+        if (m <= 0 || n <= 0) {
+            return res;
+        }
 
-        return null;
+        int cnt = 0;
+        int[][] dirs = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
+        int[] board = new int[m * n];
+        Arrays.fill(board, -1);
+
+        for (int[] pos : positions) {
+            int k = pos[0] * n + pos[1];
+            board[k] = k;
+            cnt++;
+
+            for (int[] dir : dirs) {
+                int x = pos[0] + dir[0];
+                int y = pos[1] + dir[1];
+                int p = x * n + y;
+
+                if(x < 0 || x >= m || y < 0 || y >= n || board[p] == -1) {
+                    continue;
+                }
+
+                int root = findRoot(board, p);
+                if (k != root) {
+                    board[k] = root;
+                    k = root;
+                    cnt--;
+                }
+
+            }
+
+            res.add(cnt);
+        }
+
+        return res;
+    }
+
+    private int findRoot(int[] board, int p) {
+        while (p != board[p]) {
+            p = board[p];
+        }
+        return p;
     }
 
     int[][] dirs = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
