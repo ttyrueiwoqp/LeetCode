@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q291_Q300;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -23,8 +23,41 @@ package qns;
 public class Q296 {
 
     public int minTotalDistance(int[][] grid) {
+        if (grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
 
-        return 0;
+        int res = 0;
+        int m = grid.length, n = grid[0].length;
+        int[] x = new int[m];
+        int[] y = new int[n];
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1) {
+                    x[i]++;
+                    y[j]++;
+                }
+            }
+        }
+
+        return helper(x) + helper(y);
+    }
+
+    private int helper(int[] a) {
+        int res = 0, i = 0, j = a.length - 1;
+        while (i < j) {
+            while (a[i] == 0 && i < j) {
+                i++;
+            }
+            while (a[j] == 0 && i < j) {
+                j--;
+            }
+            res += j - i;
+            a[i]--;
+            a[j]--;
+        }
+        return res;
     }
 
     public int sln(int[][] grid) {
