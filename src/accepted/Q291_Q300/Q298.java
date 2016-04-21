@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q291_Q300;
 
 import util.TreeNode;
 
@@ -32,8 +32,21 @@ import util.TreeNode;
 public class Q298 {
 
     public int longestConsecutive(TreeNode root) {
+        return traverse(root, 0, null);
+    }
 
-        return 0;
+    private int traverse(TreeNode node, int cnt, TreeNode parent) {
+        if (node == null) {
+            return cnt;
+        }
+
+        if (parent != null && node.val == parent.val + 1) {
+            cnt = cnt + 1;
+        } else {
+            cnt = 1;
+        }
+
+        return Math.max(cnt, Math.max(traverse(node.left, cnt, node), traverse(node.right, cnt, node)));
     }
 
     private int max = 0;
