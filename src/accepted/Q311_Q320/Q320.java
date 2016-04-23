@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q311_Q320;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,18 +16,29 @@ import java.util.List;
 public class Q320 {
 
     public List<String> generateAbbreviations(String word) {
-
         List<String> res = new ArrayList<String>();
-        res.add(word);
+        helper(res, word.toCharArray(), new StringBuilder(), 0, 0);
+        return res;
+    }
 
-        int len = word.length();
-        for (int i = 1; i <= len; i++) {
-            for (int j = 0; j < len - i; j++) {
-
+    private void helper(List<String> res, char[] cs, StringBuilder sb, int i, int num) {
+        int len = sb.length();
+        if (i == cs.length) {
+            if (num > 0) {
+                sb.append(num);
             }
+            res.add(sb.toString());
+        } else {
+
+            helper(res, cs, sb, i + 1, num + 1);
+
+            if (num > 0) {
+                sb.append(num);
+            }
+            helper(res, cs, sb.append(cs[i]), i + 1, 0);
         }
 
-        return res;
+        sb.setLength(len);
     }
 
     public List<String> sln(String word) {
