@@ -1,4 +1,6 @@
-package qns;
+package accepted.Q291_Q300;
+
+import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -27,9 +29,44 @@ import java.util.Set;
 public class Q291 {
 
     public boolean wordPatternMatch(String pattern, String str) {
-
-        return false;
+        return dfs(pattern.toCharArray(), 0, str, 0, new HashMap<>(), new HashMap<>());
     }
+
+    private boolean dfs(char[] pattern, int i, String str, int j, Map<Character, String> m1, Map<String, Character> m2) {
+        if (i == pattern.length) {
+            return j == str.length();
+        } else {
+            String t = m1.get(pattern[i]);
+
+            if (t == null) {
+                for (int k = j + 1; k <= str.length(); k++) {
+                    String sub = str.substring(j, k);
+                    if (m2.containsKey(sub)) {
+                        continue;
+                    }
+                    m1.put(pattern[i], sub);
+                    m2.put(sub, pattern[i]);
+                    if (dfs(pattern, i + 1, str, k, m1, m2)) {
+                        return true;
+                    }
+                    m1.remove(pattern[i]);
+                    m2.remove(sub);
+                }
+                return false;
+
+            } else if (j + t.length() <= str.length() && t.equals(str.substring(j, j + t.length()))) {
+                return dfs(pattern, i + 1, str, j + t.length(), m1, m2);
+            } else {
+                return false;
+            }
+        }
+    }
+
+    @Test
+    public void test() {
+        System.out.println(wordPatternMatch("aba", "aaaa"));
+    }
+
 
     public boolean sln(String pattern, String str) {
         Map<Character, String> map = new HashMap<>();
