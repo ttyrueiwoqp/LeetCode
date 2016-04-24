@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q311_Q320;
 
 import util.TreeNode;
 
@@ -43,8 +43,38 @@ import java.util.*;
 public class Q314 {
 
     public List<List<Integer>> verticalOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        if(root == null) return res;
 
-        return null;
+        Map<Integer, List<Integer>> m = new TreeMap<>();
+        Deque<TreeNode> queue = new ArrayDeque<>();
+        Deque<Integer> cols = new ArrayDeque<>();
+        queue.addLast(root);
+        cols.addLast(0);
+
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            int col = cols.poll();
+
+            List<Integer> t = m.get(col);
+            if (t == null) {
+                t = new ArrayList<>();
+                m.put(col, t);
+            }
+            t.add(node.val);
+
+            if (node.left != null) {
+                queue.addLast(node.left);
+                cols.addLast(col - 1);
+            }
+            if (node.right != null) {
+                queue.addLast(node.right);
+                cols.addLast(col + 1);
+            }
+        }
+
+        res.addAll(m.values());
+        return res;
     }
 
     public List<List<Integer>> sln(TreeNode root) {
