@@ -1,6 +1,9 @@
-package qns;
+package accepted.Q281_Q290;
 
 import util.TreeNode;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -12,8 +15,40 @@ import util.TreeNode;
 public class Q285 {
 
     public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+        if (p.right != null) {
+            TreeNode res = p.right;
+            while (res.left != null) {
+                res = res.left;
+            }
+            return res;
+        }
 
-        return root;
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        Deque<Integer> nums = new ArrayDeque<>();
+        stack.push(root);
+        nums.push(0);
+
+        TreeNode n = stack.peek();
+        while (p.val != n.val) {
+            if (p.val < n.val) {
+                stack.push(n.left);
+                nums.push(-1);
+            } else if (p.val > n.val) {
+                stack.push(n.right);
+                nums.push(1);
+            }
+            n = stack.peek();
+        }
+
+        while (!stack.isEmpty()) {
+            int num = nums.pop();
+            stack.pop();
+            if (num == -1) {
+                return stack.pop();
+            }
+        }
+
+        return null;
     }
 
     public TreeNode sln(TreeNode root, TreeNode p) {
