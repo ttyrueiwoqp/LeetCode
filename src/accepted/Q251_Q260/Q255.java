@@ -1,5 +1,7 @@
-package qns;
+package accepted.Q251_Q260;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 /**
@@ -16,7 +18,19 @@ public class Q255 {
 
     public boolean verifyPreorder(int[] preorder) {
 
-        return false;
+        int min = Integer.MIN_VALUE;
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int p : preorder) {
+            if (p < min) {
+                return false;
+            }
+            while (!stack.isEmpty() && p > stack.peek()) {
+                min = stack.pop();
+            }
+            stack.push(p);
+        }
+
+        return true;
     }
 
 
