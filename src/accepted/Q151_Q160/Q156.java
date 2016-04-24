@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q151_Q160;
 
 import util.TreeNode;
 
@@ -42,8 +42,23 @@ import util.TreeNode;
 public class Q156 {
 
     public TreeNode upsideDownBinaryTree(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        return helper(root);
+    }
 
-        return root;
+    private TreeNode helper(TreeNode node) {
+        if (node.left == null) {
+            return node;
+        }
+        TreeNode top = node.left;
+        TreeNode res = helper(node.left);
+        top.left = node.right;
+        top.right = node;
+        node.left = null;
+        node.right = null;
+        return res;
     }
 
     public TreeNode sln(TreeNode root) {
