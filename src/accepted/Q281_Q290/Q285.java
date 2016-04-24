@@ -41,9 +41,8 @@ public class Q285 {
         }
 
         while (!stack.isEmpty()) {
-            int num = nums.pop();
             stack.pop();
-            if (num == -1) {
+            if (nums.pop() == -1) {
                 return stack.pop();
             }
         }
