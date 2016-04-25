@@ -1,6 +1,7 @@
-package qns;
+package accepted.Q151_Q160;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -14,8 +15,39 @@ import java.util.HashMap;
 public class Q159 {
 
     public int lengthOfLongestSubstringTwoDistinct(String s) {
+        int res = 0;
+        int len = s.length();
+        Map<Character, Integer> m = new HashMap<>();
+        Character[] t = new Character[len];
 
-        return 0;
+        int p = 0;
+        char[] cs = s.toCharArray();
+        for (int i = 0; i < len; i++) {
+            char c = cs[i];
+            Integer idx = m.get(c);
+
+            if (idx != null) {
+                t[idx] = null;
+            }
+            m.put(c, i);
+            t[i] = c;
+
+            if (m.keySet().size() > 2) {
+                res = Math.max(res, i - p);
+
+                while (p < len && t[p] == null) {
+                    p++;
+                }
+                m.remove(t[p]);
+                t[p] = null;
+                p++;
+            }
+
+            if (i == len - 1) {
+                res = Math.max(res, len - p);
+            }
+        }
+        return res;
     }
 
     public int sln(String s) {
