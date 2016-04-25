@@ -48,6 +48,7 @@ import accepted.Q321_Q330.*;
 import accepted.Q331_Q340.Q331;
 import accepted.Q331_Q340.Q332;
 import accepted.Q331_Q340.Q336;
+import accepted.Q331_Q340.Q340;
 import qns.*;
 
 /**
@@ -128,6 +129,8 @@ public class Google {
             Q309.class,
             Q224.class,
             Q269.class,
-            Q259.class
+            Q259.class,
+            Q340.class,
+            Q345.class
     };
 }
