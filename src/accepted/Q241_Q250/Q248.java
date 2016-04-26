@@ -1,4 +1,6 @@
-package qns;
+package accepted.Q241_Q250;
+
+import org.junit.Test;
 
 import java.util.*;
 
@@ -21,40 +23,43 @@ import java.util.*;
  */
 public class Q248 {
 
-    private Map<Integer, List<String>> map = new HashMap<>();
-
     public int strobogrammaticInRange(String low, String high) {
+        int res = 0;
+        List<String> list = new ArrayList<>();
+        for (int i = low.length(); i <= high.length(); i++) {
+            list.addAll(findStrobogrammatic(i, i));
+        }
 
-        findStrobogrammatic(high.length(), high.length());
-        findStrobogrammatic(low.length(), low.length());
+        for (String s : list) {
+            if ((s.length() == low.length() && s.compareTo(low) < 0)
+                    || (s.length() == high.length() && s.compareTo(high) > 0)) {
+                continue;
+            }
+            res++;
+        }
 
-        return 0;
+        return res;
     }
 
-    private void findStrobogrammatic(int n, int m) {
-
-        if (map.containsKey(n)) {
-            return;
-        }
+    public List<String> findStrobogrammatic(int n, int m) {
 
         List<String> res = new ArrayList<>();
         if (n < 1) {
             res.add("");
-            map.put(n, res);
-            return;
+            return res;
 
         } else if (n == 1) {
             res.add("0");
             res.add("1");
             res.add("8");
-            map.put(n, res);
-            return;
+            return res;
 
         } else {
-            findStrobogrammatic(n - 2, m);
-            List<String> n2 = map.get(n - 2);
+            List<String> n2 = findStrobogrammatic(n - 2, m);
             for (String s : n2) {
-                res.add("0" + s + "0");
+                if (n < m) {
+                    res.add("0" + s + "0");
+                }
                 res.add("1" + s + "1");
                 res.add("6" + s + "9");
                 res.add("8" + s + "8");
@@ -62,30 +67,14 @@ public class Q248 {
             }
         }
 
-        map.put(n, res);
+        return res;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Test
+    public void test() {
+        System.out.println(strobogrammaticInRange("0", "100000000000000"));
+        System.out.println(sln2("0", "100000000000000"));
+    }
 
 
     char[][] pairs = {{'0', '0'}, {'1', '1'}, {'6', '9'}, {'8', '8'}, {'9', '6'}};
