@@ -50,6 +50,8 @@ import accepted.Q331_Q340.Q331;
 import accepted.Q331_Q340.Q332;
 import accepted.Q331_Q340.Q336;
 import accepted.Q331_Q340.Q340;
+import accepted.Q341_Q350.*;
+import accepted.Q341_Q350.Q345;
 import qns.*;
 
 /**

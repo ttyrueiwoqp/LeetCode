@@ -14,10 +14,6 @@ import java.util.Set;
  * <p>
  * Example 2:
  * Given s = "leetcode", return "leotcede".
- * <p>
- * Show Company Tags
- * Show Tags
- * Show Similar Problems
  */
 public class Q345 {
 
