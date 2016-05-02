@@ -1,5 +1,9 @@
-package qns;
+package accepted.Q311_Q320;
 
+import org.junit.Test;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -30,8 +34,79 @@ import java.util.Queue;
 public class Q317 {
 
     public int shortestDistance(int[][] grid) {
+        if (grid == null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
+        final int[] dir = new int[]{0, 1, 0, -1, 0};
 
-        return 0;
+        int m = grid.length, n = grid[0].length;
+        int[][] dist = new int[m][n];
+        int[][] reach = new int[m][n];
+        int numBuilding = 0;
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+
+                if (grid[i][j] == 1) {
+                    numBuilding++;
+                    int level = 1;
+                    int[][] visited = new int[m][n];
+                    Deque<Integer> queue = new ArrayDeque<>();
+                    queue.offer(i);
+                    queue.offer(j);
+
+                    while (!queue.isEmpty()) {
+
+                        int qSize = queue.size();
+                        for (int k = 0; k < qSize; k+=2) {
+                            int x = queue.poll();
+                            int y = queue.poll();
+
+                            for (int d = 0; d < 4; d++) {
+                                int nbX = x + dir[d];
+                                int nbY = y + dir[d + 1];
+
+                                if (nbX >= 0 && nbX < m && nbY >= 0 && nbY < n
+                                        && grid[nbX][nbY] == 0 && visited[nbX][nbY] == 0) {
+
+                                    dist[nbX][nbY] += level;
+                                    reach[nbX][nbY]++;
+
+                                    visited[nbX][nbY] = 1;
+                                    queue.offer(nbX);
+                                    queue.offer(nbY);
+
+                                }
+                            }
+                        }
+                        level++;
+                    }
+                }
+            }
+        }
+
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 0 && reach[i][j] == numBuilding) {
+                    min = Math.min(min, dist[i][j]);
+                }
+            }
+        }
+
+        return min == Integer.MIN_VALUE ? -1 : min;
+    }
+
+    // TODO: Subscribe again and check solution
+    @Test
+    public void test() {
+        int[][] a = new int[][]{
+                {1,0,2,0,1},
+                {0,0,0,0,0},
+                {0,0,1,0,0}
+        };
+
+        System.out.println(shortestDistance(a));
     }
 
     public int sln(int[][] grid) {

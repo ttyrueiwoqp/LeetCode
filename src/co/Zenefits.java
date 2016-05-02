@@ -15,7 +15,7 @@ import accepted.Q231_Q240.Q239;
 import accepted.Q251_Q260.Q251;
 import accepted.Q251_Q260.Q255;
 import accepted.Q261_Q270.Q261;
-import qns.Q317;
+import accepted.Q311_Q320.Q317;
 
 /**
  * Created by lvfan on 3/27/2016.
