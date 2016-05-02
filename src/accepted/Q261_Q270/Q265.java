@@ -1,4 +1,6 @@
-package qns;
+package accepted.Q261_Q270;
+
+import org.junit.Test;
 
 /**
  * Created by lvfan on 3/27/2016.
@@ -20,9 +22,39 @@ package qns;
 public class Q265 {
 
     public int minCostII(int[][] costs) {
+        if (costs == null || costs.length == 0 || costs[0].length == 0) {
+            return 0;
+        }
 
-        return 0;
+        int len = costs.length, k = costs[0].length;
+        int[][] mins = new int[2][k];
+        int idx = 0;
+
+        for (int i = 0; i < len; i++) {
+            for (int j = 0; j < k; j++) {
+                int min = Integer.MAX_VALUE;
+                for (int t = 1; t < k - 1; t++) {
+                    min = Math.min(mins[idx][(j + t) % k], mins[idx][(j + t + 1) % k]);
+                }
+                mins[1 - idx][j] = costs[i][j] + min;
+            }
+            idx = 1 - idx;
+        }
+
+        int res = Integer.MAX_VALUE;
+        for (int i = 0; i < k; i++) {
+            res = Math.min(res, mins[idx][i]);
+        }
+
+        return res;
     }
+
+    // TODO: Subscribe again and check solution (Maybe incorrect)
+    @Test
+    public void test() {
+
+    }
+
 
     public int sln(int[][] costs) {
         if (costs == null || costs.length == 0) return 0;
@@ -34,7 +66,8 @@ public class Q265 {
 
         for (int i = 0; i < n; i++) {
             int last1 = min1, last2 = min2;
-            min1 = -1; min2 = -1;
+            min1 = -1;
+            min2 = -1;
 
             for (int j = 0; j < k; j++) {
                 if (j != last1) {
@@ -46,7 +79,8 @@ public class Q265 {
 
                 // find the indices of 1st and 2nd smallest cost of painting current house i
                 if (min1 < 0 || costs[i][j] < costs[i][min1]) {
-                    min2 = min1; min1 = j;
+                    min2 = min1;
+                    min1 = j;
                 } else if (min2 < 0 || costs[i][j] < costs[i][min2]) {
                     min2 = j;
                 }
