@@ -45,7 +45,7 @@ public class Q355 {
 
     int seed = 0;
     Map<Integer, Deque<Tweet>> tweetMap;
-    Map<Integer, List<Integer>> followerMap;
+    Map<Integer, Set<Integer>> followerMap;
     Map<Integer, Set<Tweet>> newsFeedMap;
 
     /**
@@ -76,9 +76,8 @@ public class Q355 {
         }
         selfNews.add(tweet);
 
-        List<Integer> followers = followerMap.get(userId);
-        if (followers != null && !followers.isEmpty()) {
-
+        Set<Integer> followers = followerMap.get(userId);
+        if (followers != null) {
             for (Integer follower : followers) {
                 Set<Tweet> news = newsFeedMap.get(follower);
                 if (news == null) {
@@ -119,10 +118,12 @@ public class Q355 {
             return;
         }
 
-        List<Integer> followers = followerMap.get(followeeId);
+        Set<Integer> followers = followerMap.get(followeeId);
         if (followers == null) {
-            followers = new ArrayList<>();
+            followers = new HashSet<>();
             followerMap.put(followeeId, followers);
+        } else if (followers.contains(followerId)) {
+            return;
         }
         followers.add(followerId);
 
@@ -146,11 +147,7 @@ public class Q355 {
      */
     public void unfollow(int followerId, int followeeId) {
 
-        if (followerId == followeeId) {
-            return;
-        }
-
-        List<Integer> followers = followerMap.get(followeeId);
+        Set<Integer> followers = followerMap.get(followeeId);
         if (followers == null || followers.isEmpty()
                 || !followers.contains(followerId)) {
             return;
