@@ -1,4 +1,4 @@
-package qns;
+package accepted.Q351_Q360;
 
 import java.util.*;
 
