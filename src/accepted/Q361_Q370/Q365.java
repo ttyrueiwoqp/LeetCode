@@ -1,4 +1,4 @@
-package accepted.Q351_Q360;
+package accepted.Q361_Q370;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,7 +24,7 @@ import java.util.Set;
  * Input: x = 2, y = 6, z = 5
  * Output: False
  */
-public class Q356 {
+public class Q365 {
 
     public boolean canMeasureWater(int x, int y, int z) {
         if (z == 0) {
