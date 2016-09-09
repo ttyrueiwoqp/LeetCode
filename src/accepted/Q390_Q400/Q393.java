@@ -38,45 +38,33 @@ package accepted.Q390_Q400;
  */
 public class Q393 {
     public boolean validUtf8(int[] data) {
-
         int i = 0;
         while (i < data.length) {
             int d = data[i] >> 7 & 1;
 
-            switch (d) {
+            if (d == 0) {
+                i++;
+            } else {
+                int cnt = 0;
+                d = data[i];
 
-                case 0:
-                    i++;
-                    break;
+                while ((d << 24 & 0x80000000) == 0x80000000 && cnt < 8) {
+                    d = d << 1;
+                    cnt++;
+                }
+                if (cnt < 2 || cnt == 8 || i + cnt - 1 >= data.length) {
+                    return false;
+                }
 
-                case 1:
-                    int cnt = 0;
-                    d = data[i];
-
-                    while ((d << 24 & 0x80000000) == 0x80000000 && cnt < 8) {
-                        d = d << 1;
-
-                        cnt++;
-                    }
-                    if (cnt < 2 || cnt == 8 || i + cnt - 1 >= data.length) {
+                for (int j = i + 1; j < i + cnt; j++) {
+                    if ((data[j] >> 6 & 0b11) != 0b10) {
                         return false;
                     }
+                }
 
-                    for (int j = i + 1; j < i + cnt; j++) {
-                        if ((data[j] >> 6 & 0b11) != 0b10) {
-                            return false;
-                        }
-                    }
-
-                    i += cnt;
-                    break;
-
-                default:
-
-                    return false;
+                i += cnt;
             }
         }
-
         return true;
     }
 
