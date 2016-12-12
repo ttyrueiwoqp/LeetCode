@@ -1,4 +1,4 @@
-package accepted.Q390_Q400;
+package accepted.Q391_Q400;
 
 /**
  * Given a positive integer n and you can do operations as follow:
