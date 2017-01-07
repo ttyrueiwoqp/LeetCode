@@ -50,7 +50,7 @@ public class Q449 {
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        String[] vals = data.split(",", 0);
+        String[] vals = data.split(",");
         if (vals.length == 0 || vals[0].isEmpty()) {
             return null;
         }
