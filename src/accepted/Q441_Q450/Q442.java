@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Given an array of integers, 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.
+ * Given an array of integers, 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and
+ * others appear once.
  * <p>
  * Find all the elements that appear twice in this array.
  * <p>
