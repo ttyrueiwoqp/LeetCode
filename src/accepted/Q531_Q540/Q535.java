@@ -1,5 +1,7 @@
 package accepted.Q531_Q540;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +20,7 @@ public class Q535 {
     private static final String DOMAIN = "http://tinyurl.com/";
     Map<String, String> m = new HashMap<>();
     Map<String, String> m2 = new HashMap<>();
+    SecureRandom random = new SecureRandom();
 
     // Encodes a URL to a shortened URL.
     public String encode(String longUrl) {
@@ -27,7 +30,7 @@ public class Q535 {
 
         String key;
         do {
-            key = java.util.UUID.randomUUID().toString().substring(0, 6);
+            key = new BigInteger(30, random).toString(32);
         } while (m.containsKey(key));
 
         m.put(key, longUrl);
