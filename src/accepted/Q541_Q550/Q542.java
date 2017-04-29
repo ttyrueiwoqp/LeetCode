@@ -60,7 +60,7 @@ public class Q542 {
                         matrix[r][c] <= matrix[p[0]][p[1]] + 1) {
                     continue;
                 }
-                queue.add(new int[] {r, c});
+                queue.offer(new int[] {r, c});
                 matrix[r][c] = matrix[p[0]][p[1]] + 1;
             }
         }
