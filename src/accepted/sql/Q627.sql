@@ -15,4 +15,9 @@
 -- | 3  | C    | f   | 5500   |
 -- | 4  | D    | m   | 500    |
 
-update salary set sex = (case when sex = 'm' then 'f' else 'm' end);
+UPDATE salary
+SET sex = (
+  CASE
+  WHEN sex = 'm'
+    THEN 'f'
+  ELSE 'm' END);
