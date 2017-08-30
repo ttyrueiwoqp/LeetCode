@@ -1,9 +1,6 @@
 package accepted.Q131_Q140;
 
-import org.junit.Test;
-
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -19,6 +16,43 @@ import java.util.List;
 public class Q131 {
 
 	public List<List<String>> partition(String s) {
+		List<List<String>> res = new ArrayList<>();
+
+		if (s.length() < 2) {
+			List<String> self = new ArrayList<>();
+			if (!s.isEmpty()) {
+				self.add(s);
+			}
+			res.add(self);
+			return res;
+		}
+
+		for (int i = s.length() - 1; i >= 0; i--) {
+			String second = s.substring(i);
+			if (isPalindrome(second)) {
+				List<List<String>> firsts = partition(s.substring(0, i));
+				for (List<String> first : firsts) {
+					first.add(second);
+					res.add(first);
+				}
+			}
+		}
+
+		return res;
+	}
+
+	private boolean isPalindrome(String s) {
+		int i = 0, j = s.length() - 1;
+		while (s.charAt(i) == s.charAt(j) && i < j) {
+			i++;
+			j--;
+		}
+		return i >= j;
+	}
+
+
+
+	public List<List<String>> partition2(String s) {
 
 		List<List<Integer>> info = new ArrayList<>();
 
@@ -64,11 +98,6 @@ public class Q131 {
 			j--;
 		}
 		return true;
-	}
-
-	@Test
-	public void test() {
-		System.out.println(partition("aab"));
 	}
 
 }
