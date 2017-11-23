@@ -1,7 +1,7 @@
 package co;
 
-import accepted.Q301_Q310.Q303;
-import accepted.Q321_Q330.Q325;
+import accepted.Q301_Q400.Q301_Q310.Q303;
+import accepted.Q301_Q400.Q321_Q330.Q325;
 
 /**
  * Created by lvfan on 3/27/2016.
