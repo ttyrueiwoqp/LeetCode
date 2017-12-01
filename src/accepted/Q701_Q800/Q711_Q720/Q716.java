@@ -32,10 +32,10 @@ import java.util.TreeMap;
  */
 public class Q716 {
 
-    int i;
-    List<Integer> stack;
-    List<Boolean> deleted;
-    TreeMap<Integer, Deque<Integer>> m;
+    private int i;
+    private List<Integer> stack;
+    private List<Boolean> deleted;
+    private TreeMap<Integer, Deque<Integer>> m;
 
     /**
      * initialize your data structure here.
@@ -44,7 +44,7 @@ public class Q716 {
         i = -1;
         stack = new ArrayList<>();
         deleted = new ArrayList<>();
-        m = new TreeMap();
+        m = new TreeMap<>();
     }
 
     public void push(int x) {
