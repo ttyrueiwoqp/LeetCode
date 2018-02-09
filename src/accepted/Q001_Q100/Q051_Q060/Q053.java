@@ -17,4 +17,19 @@ public class Q053 {
 		return result;
 	}
 
+    public int maxSubArray2(int[] nums) {
+        int localMax = Integer.MIN_VALUE, max = Integer.MIN_VALUE;
+
+        for (int num : nums) {
+            if (localMax < 0) {
+                localMax = num;
+            } else {
+                localMax += num;
+            }
+            max = Math.max(max, localMax);
+        }
+
+        return max;
+    }
+
 }
