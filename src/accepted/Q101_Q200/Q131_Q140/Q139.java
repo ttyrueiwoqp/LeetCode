@@ -2,10 +2,9 @@ package accepted.Q101_Q200.Q131_Q140;
 
 import org.junit.Test;
 
-import java.util.ArrayDeque;
 import java.util.Arrays;
-import java.util.Deque;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -23,43 +22,23 @@ import java.util.Set;
  */
 public class Q139 {
 
-	public boolean wordBreak(String s, Set<String> wordDict) {
-
-		Deque<Integer> queue = new ArrayDeque<>();
-
-		queue.add(0);
-		int i, j, maxWordLen = 0;
-		for (String w : wordDict) {
-			maxWordLen = Math.max(w.length(), maxWordLen);
-		}
-
-		while (!queue.isEmpty()) {
-			i = queue.remove();
-
-			int len = Math.min(i + maxWordLen, s.length());
-			for (j = i + 1; j <= len; j++) {
-				String sub = s.substring(i, j);
-				if (wordDict.contains(sub)) {
-					if (j == s.length()) {
-						return true;
-					}
-					if (!queue.contains(j)) {
-						queue.add(j);
-					}
-				}
-			}
-		}
-
-		return false;
+    public boolean wordBreak(String s, List<String> wordDict) {
+        Set<String> wordDictSet = new HashSet(wordDict);
+        boolean[] dp = new boolean[s.length() + 1];
+        dp[0] = true;
+        for (int i = 1; i <= s.length(); i++) {
+            for (int j = 0; j < i; j++) {
+                if (dp[j] && wordDictSet.contains(s.substring(j, i))) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[s.length()];
 	}
 
 	@Test
 	public void test() {
-//		Set<String> set = new HashSet<>();
-//		set.add("leet");
-//		set.add("code");
-//
-//		System.out.println(wordBreak("leetcode", set));
 
 		String[] ss = {"a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaab"};
 		Set<String> set = new HashSet<>();
